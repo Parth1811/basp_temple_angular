@@ -18,9 +18,21 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import Amplify from "aws-amplify";
+import { Amplify, Auth }  from "aws-amplify";
 import aws_exports from "./aws-exports";
 Amplify.configure(aws_exports);
+
+const oauth ={
+  domain: "templemanagement.auth.ap-south-1.amazoncognito.com",
+  scope: ["phone", "email", "profile", "openid", "aws.cognito.signin.user.admin"],
+  redirectSignIn: "https://parth1811.github.io/bsp_temple/",
+  redirectSignOut: "https://parth1811.github.io/bsp_temple/",
+  responseType: "code",
+  options:{
+    AdvancedSecurityDataCollectionFlag: false
+  }
+}
+Auth.configure({oauth: oauth});
 
 if (environment.production) {
   enableProdMode();

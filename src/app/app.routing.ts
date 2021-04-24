@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
@@ -13,7 +14,7 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 const routes: Routes =[
     { path: '',                 component: HomeComponent },
     // { path: 'home',             component: ComponentsComponent },
-    // { path: 'user-profile',     component: ProfileComponent },
+    { path: 'profile',          component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'signup',           component: SignupComponent },
     // { path: 'landing',          component: LandingComponent },
     // { path: 'nucleoicons',      component: NucleoiconsComponent }
@@ -24,7 +25,7 @@ const routes: Routes =[
     CommonModule,
     BrowserModule,
     RouterModule.forRoot(routes,{
-      useHash: true
+      useHash: false
     })
   ],
   exports: [

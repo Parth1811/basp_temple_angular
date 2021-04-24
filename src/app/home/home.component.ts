@@ -12,30 +12,16 @@ export class HomeComponent implements OnInit {
   model: NgbDateStruct;
   date: {year: number, month: number};
   state = { user: null, customState: null };
+  url = "https://templemanagement.auth.ap-south-1.amazoncognito.com/login?response_type=code&client_id=55uv5dkvc6072jhia9o6d37oen&redirect_uri=http://localhost:4200/"
 
   constructor(private calendar: NgbCalendar) { }
 
-  ngOnInit(): void {
-    Hub.listen("auth", ({ payload: { event, data } }) => {
-      switch (event) {
-        case "signIn":
-          this.state.user = data;
-          break;
-        case "signOut":
-          this.state.user = null ;
-          break;
-        case "customOAuthState":
-          this.state.customState = data ;
-      }})
-
-    Auth.currentAuthenticatedUser()
-      .then(user => this.state.user = user )
-      .catch(() => console.log("Not signed in"));
-  }
+  ngOnInit(): void {}
 
 
   signin(){
-      Auth.federatedSignIn();
+    Auth.federatedSignIn();
+    // window.location.assign(this.url);
   }
 
   selectToday() {

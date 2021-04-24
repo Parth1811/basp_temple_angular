@@ -19,6 +19,7 @@
                 <div class="row">
                     <div class="col-md-8 mr-auto ml-auto">
                         <h2 class="title">Abouts Us</h2>
+                        <h3 *ngIf="state.user">Welcome {{ state.user.attributes.email }}</h3>
                         <h5 class="description">Bangiya Sanskritik Parishad Kalyan aims to bring all Bengalis of Kalyan
                             and its neighborhood together under one umbrella through various cultural and social
                              activities throughout the year! Welcoming everyone here!</h5>
@@ -58,7 +59,7 @@
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-6 mb-lg-auto">
-                        <div class="rounded shadow-lg overflow-hidden transform-perspective-left">
+                        <div class="rounded shadow-lg overflow-hidden">
                             <mat-card class="example-card">
                                 <img mat-card-image src="./assets/img/joshua-stannard.jpg"
                                     alt="Photo of a Shiba Inu">
@@ -73,7 +74,7 @@
                     <div class="col-lg-5 mb-5 mb-lg-0">
                         <h1>Upcoming Events</h1>
                         <p>Various year round event conducted by the BSP, Kalyan</p>
-                        <a (click)="signin()" class="btn btn-white mt-4">See all Events</a>
+                        <a href="#" class="btn btn-white mt-4">See all Events</a>
                     </div>
                 </div>
             </div>

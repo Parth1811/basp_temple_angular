@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Auth } from 'aws-amplify';
+
 
 @Component({
     selector: 'app-navbar',
@@ -70,5 +72,10 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
+    }
+
+    signin() {
+        Auth.federatedSignIn();
+        // window.location.assign(this.url);
     }
 }

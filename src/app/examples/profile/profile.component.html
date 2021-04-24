@@ -9,7 +9,8 @@
                     <img src="./assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
-                    <h4 class="title">Jane Faker<br /></h4>
+                    <h4 class="title">{{ state.user.attributes.email }}<br /></h4>
+                    <button (click)="signout()" class="btn btn-outline-default btn-round">Log out</button>
                     <h6 class="description">Music Producer</h6>
                 </div>
             </div>

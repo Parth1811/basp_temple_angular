@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="!isDocumentation()">
-                    <a [routerLink]="['/signup']" class="nav-link">Sign In</a>
+                    <a (click)="signin()" class="nav-link">Sign In</a>
                 </li>
             </ul>
         </div>
