@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
     removeFooter() {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         titlee = titlee.slice( 1 );
+        // console.log(titlee)
         if(titlee === 'signup' || titlee === 'nucleoicons'){
             return false;
         }

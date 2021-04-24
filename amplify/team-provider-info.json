@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-templemanagement-dev-184253-authRole",
+      "UnauthRoleArn": "arn:aws:iam::122979063672:role/amplify-templemanagement-dev-184253-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::122979063672:role/amplify-templemanagement-dev-184253-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-templemanagement-dev-184253-deployment",
+      "UnauthRoleName": "amplify-templemanagement-dev-184253-unauthRole",
+      "StackName": "amplify-templemanagement-dev-184253",
+      "StackId": "arn:aws:cloudformation:ap-south-1:122979063672:stack/amplify-templemanagement-dev-184253/c9af00f0-a4fe-11eb-904d-064c28fb8054",
+      "AmplifyAppId": "df6fo5c4hc07u"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "df6fo5c4hc07u",
+          "type": "manual"
+        }
+      },
+      "auth": {
+        "templemanagement4f3b0f16": {}
+      }
+    }
+  }
+}

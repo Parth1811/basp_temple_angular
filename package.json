@@ -9,7 +9,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --output-path dist/templemanagement --optimization --base-href=\"https://dev.df6fo5c4hc07u.amplifyapp.com/\"",
     "build-save": "ng build --optimization --base-href=\"https://parth1811.github.io/bsp_temple/\"",
     "test": "ng test",
     "lint": "ng lint",
