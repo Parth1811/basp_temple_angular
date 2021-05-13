@@ -20,22 +20,14 @@ import { environment } from './environments/environment';
 
 import { Amplify, Auth }  from "aws-amplify";
 import aws_exports from "./aws-exports";
-Amplify.configure(aws_exports);
-
-const oauth ={
-  domain: "templemanagement.auth.ap-south-1.amazoncognito.com",
-  scope: ["phone", "email", "profile", "openid", "aws.cognito.signin.user.admin"],
-  redirectSignIn: "https://parth1811.github.io/bsp_temple/",
-  redirectSignOut: "https://parth1811.github.io/bsp_temple/",
-  responseType: "code",
-  options:{
-    AdvancedSecurityDataCollectionFlag: false
-  }
-}
-Auth.configure({oauth: oauth});
 
 if (environment.production) {
   enableProdMode();
+  Amplify.configure(aws_exports.prod);
+  Auth.configure({oauth: aws_exports.prod.oauth});
+} else{
+  Amplify.configure(aws_exports.dev);
+  Auth.configure({ oauth: aws_exports.dev.oauth });
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule);

@@ -22,5 +22,29 @@
         "templemanagement4f3b0f16": {}
       }
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-templemanagement-prod-163516-authRole",
+      "UnauthRoleArn": "arn:aws:iam::122979063672:role/amplify-templemanagement-prod-163516-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::122979063672:role/amplify-templemanagement-prod-163516-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-templemanagement-prod-163516-deployment",
+      "UnauthRoleName": "amplify-templemanagement-prod-163516-unauthRole",
+      "StackName": "amplify-templemanagement-prod-163516",
+      "StackId": "arn:aws:cloudformation:ap-south-1:122979063672:stack/amplify-templemanagement-prod-163516/1f6b78e0-a5b6-11eb-b40f-06663ec2b9c6",
+      "AmplifyAppId": "df6fo5c4hc07u"
+    },
+    "categories": {
+      "auth": {
+        "templemanagement4f3b0f16": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "df6fo5c4hc07u",
+          "type": "manual"
+        }
+      }
+    }
   }
 }

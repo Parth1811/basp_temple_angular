@@ -34,12 +34,23 @@ $success-input-bg:           #ABF3CB !default;
 $other-medium-gray:          #A49E93 !default;
 $transparent-bg:             transparent !default;
 
-$default-color:              #66615B !default;
-$default-bg:                 #66615B !default;
-$default-states-color:       #403D39 !default;
+// $default-color:              #66615B !default;
+// $default-bg:                 #66615B !default;
+// $default-states-color:       #403D39 !default;
 
-$primary-color:              #51cbce !default;
+// $primary-color:              #51cbce !default;
+// $primary-states-color:       darken($primary-color, 10%) !default;
+
+$default-color:              #F28705 !default;
+$default-bg:                 #D95204 !default;
+$default-states-color:       darken($default-color, 10%) !default;
+
+$primary-color:              #F2E205 !default;
 $primary-states-color:       darken($primary-color, 10%) !default;
+$primary-color-100:          #F2CB05;
+$primary-color-200:          #F2B705;
+$primary-color-300:          #F28705;
+$primary-color-400:          #D95204;
 
 $success-color:              #6bd098 !default;
 $success-states-color:       darken($success-color, 10%) !default;

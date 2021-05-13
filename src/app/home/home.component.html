@@ -19,12 +19,13 @@
                 <div class="row">
                     <div class="col-md-8 mr-auto ml-auto">
                         <h2 class="title">Abouts Us</h2>
-                        <h3 *ngIf="state.user">Welcome {{ state.user.attributes.email }}</h3>
+                        <h3 *ngIf="state.user">Welcome {{ state.user.attributes.email }} <a (click)="signout()" class="btn btn-danger btn-round">Sign Out</a></h3>
                         <h5 class="description">Bangiya Sanskritik Parishad Kalyan aims to bring all Bengalis of Kalyan
                             and its neighborhood together under one umbrella through various cultural and social
                              activities throughout the year! Welcoming everyone here!</h5>
                         <br>
-                        <a href="#" class="btn btn-danger btn-round">See Details</a>
+                        <a [routerLink]="['profile']" class="btn btn-round">Profile</a>
+                        <a [routerLink]="['signup']" class="btn btn-round">Sign Up</a>
                     </div>
                 </div>
             </div>
@@ -60,15 +61,7 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-6 mb-lg-auto">
                         <div class="rounded shadow-lg overflow-hidden">
-                            <mat-card class="example-card">
-                                <img mat-card-image src="./assets/img/joshua-stannard.jpg"
-                                    alt="Photo of a Shiba Inu">
-                                <mat-card-content>
-                                    <p>
-                                        Here is a short summary of this event
-                                    </p>
-                                </mat-card-content>
-                            </mat-card>
+                            <igx-calendar></igx-calendar>
                         </div>
                     </div>
                     <div class="col-lg-5 mb-5 mb-lg-0">
