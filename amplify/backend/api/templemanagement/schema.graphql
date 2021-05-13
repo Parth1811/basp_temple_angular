@@ -1,5 +1,7 @@
-type Todo @model {
+type Event @model {
   id: ID!
-  name: String!
+  title: String!
+  date: String!
   description: String
+  img_link: String
 }

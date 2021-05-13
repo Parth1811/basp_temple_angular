@@ -1,27 +1,33 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateTodo {
-  onCreateTodo {
+subscription OnCreateEvent {
+  onCreateEvent {
     id
-    name
+    title
+    date
     description
+    img_link
     createdAt
     updatedAt
   }
 }
-subscription OnUpdateTodo {
-  onUpdateTodo {
+subscription OnUpdateEvent {
+  onUpdateEvent {
     id
-    name
+    title
+    date
     description
+    img_link
     createdAt
     updatedAt
   }
 }
-subscription OnDeleteTodo {
-  onDeleteTodo {
+subscription OnDeleteEvent {
+  onDeleteEvent {
     id
-    name
+    title
+    date
     description
+    img_link
     createdAt
     updatedAt
   }

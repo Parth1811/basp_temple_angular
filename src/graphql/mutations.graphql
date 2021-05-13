@@ -1,36 +1,42 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation CreateEvent(
+  $input: CreateEventInput!
+  $condition: ModelEventConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createEvent(input: $input, condition: $condition) {
     id
-    name
+    title
+    date
     description
+    img_link
     createdAt
     updatedAt
   }
 }
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation UpdateEvent(
+  $input: UpdateEventInput!
+  $condition: ModelEventConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updateEvent(input: $input, condition: $condition) {
     id
-    name
+    title
+    date
     description
+    img_link
     createdAt
     updatedAt
   }
 }
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
+mutation DeleteEvent(
+  $input: DeleteEventInput!
+  $condition: ModelEventConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
+  deleteEvent(input: $input, condition: $condition) {
     id
-    name
+    title
+    date
     description
+    img_link
     createdAt
     updatedAt
   }
