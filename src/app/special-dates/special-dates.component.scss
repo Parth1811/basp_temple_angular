@@ -1,0 +1,131 @@
+@import '~igniteui-angular/lib/core/styles/themes/index';
+@import '../../assets/sass/paper-kit/variables';
+*::before,*::after{
+  box-sizing: border-box;
+}
+
+.btn-trans-black{
+  background-color: rgba(0,0,0,0.5);
+}
+
+$custom-calendar-theme: igx-calendar-theme(
+  $header-background: $default-color,
+  $content-background: #fdfdfd,
+  $header-text-color: #ffffff,
+  $date-current-text-color: #fdfdfd,
+  $date-current-bg-color: $primary-color-400,
+  $picker-arrow-color: $default-color,
+  $date-selected-text-color: #000000,
+  $date-selected-background: $primary-color-100,
+  $picker-arrow-hover-color:  #d15227,
+  $year-current-text-color: $primary-color-200,
+  $year-hover-text-color: #fd774a,
+  $month-current-text-color: $primary-color-200,
+  $month-hover-text-color: #fd774a,
+  $picker-text-color: $primary-color-200,
+  $picker-text-hover-color:  #8d4932,
+  $date-special-background: $default-color,
+  $date-special-text-color: #fdfdfd
+);
+
+:host {
+ ::ng-deep {
+   @include igx-calendar($custom-calendar-theme);
+ }
+}
+
+.blackbg{
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 25%;
+}
+
+.card1{
+  color: white;
+  width: 100%;
+  overflow: hidden;
+  max-height: 25rem;
+  transition: transform 500ms ease;
+  // box-shadow:
+  //   0 4px 10px 0 rgba(0,0,0,0.2),
+  //   0 4px 20px 0 rgba(0,0,0,0.19)
+}
+
+.card1>img{
+  width: 100%
+}
+
+.card1-content{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1rem;
+
+  // transform: translateY(100%);
+  // transition: transform 500ms ease;
+
+  background: linear-gradient(
+     rgba(0,0,0,0),
+     rgba(0,0,0,0.3) 5%,
+     rgba(0,0,0,0.5) 10%,
+     rgba(0,0,0,1)
+  )
+}
+
+.card1-date{
+  position: absolute;
+  top: 0;
+  padding: 0.5rem;
+  font-size: medium;
+  margin: 0.25rem;
+  border-radius: 30px;
+  background: rgba(0,0,0,0.5)
+}
+
+.card1-icon{
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+}
+
+.card1-title{
+  font-size: 1.5rem;
+  position: relative;
+  padding: 1rem 0 0.5rem;
+  text-align: left;
+  // width: fit-content;
+}
+
+.card1-body{
+  // min-height: fit-content;
+  max-height: 12rem;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  text-align: left;
+  padding: 0.75rem 0.75rem 2rem;
+  font-size: large;
+  margin: 0;
+}
+
+.card1-body::-webkit-scrollbar {
+    display: none;
+}
+
+.card1-sep{
+  content: "";
+  position: aboslute;
+  display: block;
+  left: -1rem;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  transform-origin: left;
+  background: #f96332;
+  // padding: 0.75rem 0 0;
+  // transform: scale(0);
+  // transition: transform 500ms ease;
+}
+
+.form-control.ng-touched.ng-invalid{
+  border: 2px solid red;
+}

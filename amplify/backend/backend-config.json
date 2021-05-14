@@ -6,12 +6,16 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authtemplemanagement4f3b0f16"
-            }
+            "authenticationType": "AWS_IAM"
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authtemplemanagement4f3b0f16"
+              }
+            }
+          ]
         }
       }
     }

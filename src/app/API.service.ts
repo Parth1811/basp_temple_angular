@@ -9,7 +9,7 @@ export interface SubscriptionResponse<T> {
   value: GraphQLResult<T>;
 }
 
-export type CreateEventInput = {
+export type CreateFestivalEventInput = {
   id?: string | null;
   title: string;
   date: string;
@@ -17,14 +17,14 @@ export type CreateEventInput = {
   img_link?: string | null;
 };
 
-export type ModelEventConditionInput = {
+export type ModelFestivalEventConditionInput = {
   title?: ModelStringInput | null;
   date?: ModelStringInput | null;
   description?: ModelStringInput | null;
   img_link?: ModelStringInput | null;
-  and?: Array<ModelEventConditionInput | null> | null;
-  or?: Array<ModelEventConditionInput | null> | null;
-  not?: ModelEventConditionInput | null;
+  and?: Array<ModelFestivalEventConditionInput | null> | null;
+  or?: Array<ModelFestivalEventConditionInput | null> | null;
+  not?: ModelFestivalEventConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -66,8 +66,8 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type Event = {
-  __typename: "Event";
+export type FestivalEvent = {
+  __typename: "FestivalEvent";
   id?: string;
   title?: string;
   date?: string;
@@ -77,7 +77,7 @@ export type Event = {
   updatedAt?: string;
 };
 
-export type UpdateEventInput = {
+export type UpdateFestivalEventInput = {
   id: string;
   title?: string | null;
   date?: string | null;
@@ -85,19 +85,19 @@ export type UpdateEventInput = {
   img_link?: string | null;
 };
 
-export type DeleteEventInput = {
+export type DeleteFestivalEventInput = {
   id?: string | null;
 };
 
-export type ModelEventFilterInput = {
+export type ModelFestivalEventFilterInput = {
   id?: ModelIDInput | null;
   title?: ModelStringInput | null;
   date?: ModelStringInput | null;
   description?: ModelStringInput | null;
   img_link?: ModelStringInput | null;
-  and?: Array<ModelEventFilterInput | null> | null;
-  or?: Array<ModelEventFilterInput | null> | null;
-  not?: ModelEventFilterInput | null;
+  and?: Array<ModelFestivalEventFilterInput | null> | null;
+  or?: Array<ModelFestivalEventFilterInput | null> | null;
+  not?: ModelFestivalEventFilterInput | null;
 };
 
 export type ModelIDInput = {
@@ -116,14 +116,14 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
-export type ModelEventConnection = {
-  __typename: "ModelEventConnection";
-  items?: Array<Event | null> | null;
+export type ModelFestivalEventConnection = {
+  __typename: "ModelFestivalEventConnection";
+  items?: Array<FestivalEvent | null> | null;
   nextToken?: string | null;
 };
 
-export type CreateEventMutation = {
-  __typename: "Event";
+export type CreateFestivalEventMutation = {
+  __typename: "FestivalEvent";
   id: string;
   title: string;
   date: string;
@@ -133,8 +133,8 @@ export type CreateEventMutation = {
   updatedAt: string;
 };
 
-export type UpdateEventMutation = {
-  __typename: "Event";
+export type UpdateFestivalEventMutation = {
+  __typename: "FestivalEvent";
   id: string;
   title: string;
   date: string;
@@ -144,8 +144,8 @@ export type UpdateEventMutation = {
   updatedAt: string;
 };
 
-export type DeleteEventMutation = {
-  __typename: "Event";
+export type DeleteFestivalEventMutation = {
+  __typename: "FestivalEvent";
   id: string;
   title: string;
   date: string;
@@ -155,8 +155,8 @@ export type DeleteEventMutation = {
   updatedAt: string;
 };
 
-export type GetEventQuery = {
-  __typename: "Event";
+export type GetFestivalEventQuery = {
+  __typename: "FestivalEvent";
   id: string;
   title: string;
   date: string;
@@ -166,10 +166,10 @@ export type GetEventQuery = {
   updatedAt: string;
 };
 
-export type ListEventsQuery = {
-  __typename: "ModelEventConnection";
+export type ListFestivalEventsQuery = {
+  __typename: "ModelFestivalEventConnection";
   items?: Array<{
-    __typename: "Event";
+    __typename: "FestivalEvent";
     id: string;
     title: string;
     date: string;
@@ -181,8 +181,8 @@ export type ListEventsQuery = {
   nextToken?: string | null;
 };
 
-export type OnCreateEventSubscription = {
-  __typename: "Event";
+export type OnCreateFestivalEventSubscription = {
+  __typename: "FestivalEvent";
   id: string;
   title: string;
   date: string;
@@ -192,8 +192,8 @@ export type OnCreateEventSubscription = {
   updatedAt: string;
 };
 
-export type OnUpdateEventSubscription = {
-  __typename: "Event";
+export type OnUpdateFestivalEventSubscription = {
+  __typename: "FestivalEvent";
   id: string;
   title: string;
   date: string;
@@ -203,8 +203,8 @@ export type OnUpdateEventSubscription = {
   updatedAt: string;
 };
 
-export type OnDeleteEventSubscription = {
-  __typename: "Event";
+export type OnDeleteFestivalEventSubscription = {
+  __typename: "FestivalEvent";
   id: string;
   title: string;
   date: string;
@@ -218,12 +218,12 @@ export type OnDeleteEventSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async CreateEvent(
-    input: CreateEventInput,
-    condition?: ModelEventConditionInput
-  ): Promise<CreateEventMutation> {
-    const statement = `mutation CreateEvent($input: CreateEventInput!, $condition: ModelEventConditionInput) {
-        createEvent(input: $input, condition: $condition) {
+  async CreateFestivalEvent(
+    input: CreateFestivalEventInput,
+    condition?: ModelFestivalEventConditionInput
+  ): Promise<CreateFestivalEventMutation> {
+    const statement = `mutation CreateFestivalEvent($input: CreateFestivalEventInput!, $condition: ModelFestivalEventConditionInput) {
+        createFestivalEvent(input: $input, condition: $condition) {
           __typename
           id
           title
@@ -243,14 +243,14 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateEventMutation>response.data.createEvent;
+    return <CreateFestivalEventMutation>response.data.createFestivalEvent;
   }
-  async UpdateEvent(
-    input: UpdateEventInput,
-    condition?: ModelEventConditionInput
-  ): Promise<UpdateEventMutation> {
-    const statement = `mutation UpdateEvent($input: UpdateEventInput!, $condition: ModelEventConditionInput) {
-        updateEvent(input: $input, condition: $condition) {
+  async UpdateFestivalEvent(
+    input: UpdateFestivalEventInput,
+    condition?: ModelFestivalEventConditionInput
+  ): Promise<UpdateFestivalEventMutation> {
+    const statement = `mutation UpdateFestivalEvent($input: UpdateFestivalEventInput!, $condition: ModelFestivalEventConditionInput) {
+        updateFestivalEvent(input: $input, condition: $condition) {
           __typename
           id
           title
@@ -270,14 +270,14 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateEventMutation>response.data.updateEvent;
+    return <UpdateFestivalEventMutation>response.data.updateFestivalEvent;
   }
-  async DeleteEvent(
-    input: DeleteEventInput,
-    condition?: ModelEventConditionInput
-  ): Promise<DeleteEventMutation> {
-    const statement = `mutation DeleteEvent($input: DeleteEventInput!, $condition: ModelEventConditionInput) {
-        deleteEvent(input: $input, condition: $condition) {
+  async DeleteFestivalEvent(
+    input: DeleteFestivalEventInput,
+    condition?: ModelFestivalEventConditionInput
+  ): Promise<DeleteFestivalEventMutation> {
+    const statement = `mutation DeleteFestivalEvent($input: DeleteFestivalEventInput!, $condition: ModelFestivalEventConditionInput) {
+        deleteFestivalEvent(input: $input, condition: $condition) {
           __typename
           id
           title
@@ -297,11 +297,11 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteEventMutation>response.data.deleteEvent;
+    return <DeleteFestivalEventMutation>response.data.deleteFestivalEvent;
   }
-  async GetEvent(id: string): Promise<GetEventQuery> {
-    const statement = `query GetEvent($id: ID!) {
-        getEvent(id: $id) {
+  async GetFestivalEvent(id: string): Promise<GetFestivalEventQuery> {
+    const statement = `query GetFestivalEvent($id: ID!) {
+        getFestivalEvent(id: $id) {
           __typename
           id
           title
@@ -318,15 +318,15 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetEventQuery>response.data.getEvent;
+    return <GetFestivalEventQuery>response.data.getFestivalEvent;
   }
-  async ListEvents(
-    filter?: ModelEventFilterInput,
+  async ListFestivalEvents(
+    filter?: ModelFestivalEventFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListEventsQuery> {
-    const statement = `query ListEvents($filter: ModelEventFilterInput, $limit: Int, $nextToken: String) {
-        listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListFestivalEventsQuery> {
+    const statement = `query ListFestivalEvents($filter: ModelFestivalEventFilterInput, $limit: Int, $nextToken: String) {
+        listFestivalEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
@@ -354,14 +354,14 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListEventsQuery>response.data.listEvents;
+    return <ListFestivalEventsQuery>response.data.listFestivalEvents;
   }
-  OnCreateEventListener: Observable<
-    SubscriptionResponse<OnCreateEventSubscription>
+  OnCreateFestivalEventListener: Observable<
+    SubscriptionResponse<OnCreateFestivalEventSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateEvent {
-        onCreateEvent {
+      `subscription OnCreateFestivalEvent {
+        onCreateFestivalEvent {
           __typename
           id
           title
@@ -373,14 +373,14 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<SubscriptionResponse<OnCreateEventSubscription>>;
+  ) as Observable<SubscriptionResponse<OnCreateFestivalEventSubscription>>;
 
-  OnUpdateEventListener: Observable<
-    SubscriptionResponse<OnUpdateEventSubscription>
+  OnUpdateFestivalEventListener: Observable<
+    SubscriptionResponse<OnUpdateFestivalEventSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateEvent {
-        onUpdateEvent {
+      `subscription OnUpdateFestivalEvent {
+        onUpdateFestivalEvent {
           __typename
           id
           title
@@ -392,14 +392,14 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<SubscriptionResponse<OnUpdateEventSubscription>>;
+  ) as Observable<SubscriptionResponse<OnUpdateFestivalEventSubscription>>;
 
-  OnDeleteEventListener: Observable<
-    SubscriptionResponse<OnDeleteEventSubscription>
+  OnDeleteFestivalEventListener: Observable<
+    SubscriptionResponse<OnDeleteFestivalEventSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteEvent {
-        onDeleteEvent {
+      `subscription OnDeleteFestivalEvent {
+        onDeleteFestivalEvent {
           __typename
           id
           title
@@ -411,5 +411,5 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<SubscriptionResponse<OnDeleteEventSubscription>>;
+  ) as Observable<SubscriptionResponse<OnDeleteFestivalEventSubscription>>;
 }

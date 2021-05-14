@@ -1,9 +1,9 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateEvent(
-  $input: CreateEventInput!
-  $condition: ModelEventConditionInput
+mutation CreateFestivalEvent(
+  $input: CreateFestivalEventInput!
+  $condition: ModelFestivalEventConditionInput
 ) {
-  createEvent(input: $input, condition: $condition) {
+  createFestivalEvent(input: $input, condition: $condition) {
     id
     title
     date
@@ -13,11 +13,11 @@ mutation CreateEvent(
     updatedAt
   }
 }
-mutation UpdateEvent(
-  $input: UpdateEventInput!
-  $condition: ModelEventConditionInput
+mutation UpdateFestivalEvent(
+  $input: UpdateFestivalEventInput!
+  $condition: ModelFestivalEventConditionInput
 ) {
-  updateEvent(input: $input, condition: $condition) {
+  updateFestivalEvent(input: $input, condition: $condition) {
     id
     title
     date
@@ -27,11 +27,11 @@ mutation UpdateEvent(
     updatedAt
   }
 }
-mutation DeleteEvent(
-  $input: DeleteEventInput!
-  $condition: ModelEventConditionInput
+mutation DeleteFestivalEvent(
+  $input: DeleteFestivalEventInput!
+  $condition: ModelFestivalEventConditionInput
 ) {
-  deleteEvent(input: $input, condition: $condition) {
+  deleteFestivalEvent(input: $input, condition: $condition) {
     id
     title
     date

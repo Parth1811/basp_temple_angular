@@ -1,0 +1,240 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mr-auto ml-auto">
+            <h2 class="title">Special Dates</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <ng-template #content let-modal>
+                <div class="modal-header">
+                    <h3 class="modal-title description" id="modal-basic-title">Submit an Event</h3>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #eventForm="ngForm" (ngSubmit)="addFormHandler(eventForm)">
+                        <div class="form-group">
+                            <label for="dateOfEvent">
+                                Date of Event
+                            </label>
+                            <input class="form-control datetimepicker"
+                                placeholder="yyyy-mm-dd" #date="ngModel" name="date" [(ngModel)]="model" ngbDatepicker
+                                #dp="ngbDatepicker" (click)="dp.toggle()" data-color="orange" required>
+                            <div *ngIf="date.invalid && date.touched" class="alert alert-danger"> Date cannot be empty </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="EventTitle">
+                                Title of event
+                            </label>
+                            <input name="title" #title="ngModel" ngModel type="text" value="" placeholder="" class="form-control"
+                                required/>
+                            <div *ngIf="title.invalid && title.touched" class="alert alert-danger"> Title cannot be empty </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Description">
+                                Description of Event
+                            </label>
+                            <div class="input-group">
+                                <textarea name="description" ngModel type="text" value="" placeholder=""
+                                    class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <ng-template #popContent>
+                                Here are the steps to create Image link. <br />
+                                1) Upload a Image to google photo and click on "Get Link" <br />
+                                2) Paste the link in <a style="color: blue;"
+                                    href="https://www.labnol.org/embed/google/photos/">
+                                    labnol.org </a> <br />
+                                3) copy paste the "Driect Image Link" in here. <br />
+                            </ng-template>
+
+                            <label for="IMage Link">
+                                Image Link <i class="fa fa-question-circle" [ngbPopover]="popContent"
+                                    popoverTitle="How to create an Image Link" popoverClass="popover-primary"></i>
+                            </label>
+                            <input name="img_link" ngModel type="text" value="" placeholder=""
+                                class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">
+                                Password
+                            </label>
+                            <input name="password" #password="ngModel" ngModel type="password" value="" placeholder=""
+                                class="form-control" required />
+                                <div *ngIf="password.invalid && password.touched" class="alert alert-danger"> Password cannot be empty </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button [disabled]="!eventForm.valid" type="submit" class="btn btn-primary btn-round">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </ng-template>
+            <ngb-carousel [interval]="10000" (slide)="onSlide($event)" #photoCarousel>
+                <ng-template ngbSlide *ngFor="let ev of events; let ic=index">
+                    <ng-template #preview let-modal>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card1">
+                                    <img src="{{ ev.img_link }}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="modal-header">
+                                    <h3 class="modal-title description">{{ ev.title }} <br/> <small>{{ ev.date }}</small>  </h3>
+                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p innerHTML="{{ ev.description | linebreak }}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <ng-template #editcontent let-modal>
+                        <div class="modal-header">
+                            <h3 class="modal-title description" id="modal-basic-title">Edit an Event</h3>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form #eventForm="ngForm" (ngSubmit)="editFormHandler(eventForm, ev.id)">
+                                <div class="form-group">
+                                    <label for="dateOfEvent">
+                                        Date of Event
+                                    </label>
+                                    <div class="input-group">
+                                        <input class="form-control datetimepicker" placeholder="yyyy-mm-dd" name="date"
+                                            [(ngModel)]="ev.date" ngbDatepicker #dp="ngbDatepicker" (click)="dp.toggle()" data-color="orange"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="title">
+                                        Title of event
+                                    </label>
+                                    <div class="input-group">
+                                        <input name="title" [(ngModel)]="ev.title" type="text" placeholder="" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">
+                                        Description of Event
+                                    </label>
+                                    <div class="input-group">
+                                        <textarea name="description" [(ngModel)]="ev.description" type="text" value="" placeholder=""
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <ng-template #popContent>
+                                        Here are the steps to create Image link. <br />
+                                        1) Upload a Image to google photo and click on "Get Link" <br />
+                                        2) Paste the link in <a style="color: blue;" href="https://www.labnol.org/embed/google/photos/">
+                                            labnol.org </a> <br />
+                                        3) copy paste the "Driect Image Link" in here. <br />
+                                    </ng-template>
+                                    <label for="IMage Link">
+                                        Image Link <i class="fa fa-question-circle" [ngbPopover]="popContent"
+                                            popoverTitle="How to create an Image Link" popoverClass="popover-primary"></i>
+                                    </label>
+                                    <div class="input-group">
+                                        <input name="img_link" [(ngModel)]="ev.img_link" type="text" value="" placeholder="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">
+                                        Password
+                                    </label>
+                                    <div class="input-group">
+                                        <input name="password" #in_pass ngModel type="password" value="" placeholder="" class="form-control"
+                                            required />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <ng-template #deleteConfirm let-modal>
+                                        <div class="modal-header">
+                                            <h3 class="modal-title text-center">Confirm Deletion</h3>
+                                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6 style="color: red;">The following event will be <strong>DELETED</strong></h6>
+                                            <h4>{{ ev.title }}</h4>
+                                            <h5>{{ ev.date }}</h5>
+                                            <form #deleteForm="ngForm">
+                                                <div class="form-group">
+                                                    <label for="password">
+                                                        Password
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <input name="password" ngModel type="password" value="" placeholder="" class="form-control" required />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="left-side">
+                                                <button [disabled]="!deleteForm.valid" type="button" class="btn btn-danger btn-round" (click)="deleteEvent(deleteForm, ev)">Delete</button>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="right-side">
+                                                <button type="button" class="btn btn-default btn-round" (click)="c('Close click')">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                    <button (click)="open(deleteConfirm)" class="btn btn-danger btn-round">
+                                        Delete
+                                    </button>
+                                    <button [disabled]="!eventForm.valid" type="submit" class="btn btn-primary btn-round">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </ng-template>
+
+                    <div class="card1" [@slide-up]="slide ? 'default' : 'collaspe'">
+                        <img src="{{ ev.img_link }}">
+                        <div class="card1-date">{{ ev.date }}</div>
+                        <div class="card1-icon">
+                            <button type="button" [hidden]="!isSignedIn" (click)="open(editcontent)" class="btn btn-trans-black btn-round"><i class="fa fa-edit"></i></button>
+                            <!-- <button type="button" (click)="resetevent()" class="btn btn-trans-black btn-round"><i class="fa fa-eye"></i></button> -->
+                            <button type="button" (click)="expandCard(preview)" class="btn btn-trans-black btn-round"><i class="fa fa-expand"></i></button>
+                        </div>
+                        <div class="card1-content">
+                            <div class="card1-title"><h4>{{ ev.title }}</h4></div>
+                            <div class="card1-sep"></div>
+                            <p innerHTML="{{ ev.description | linebreak }}" class="card1-body"></p>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+            <div class="row">
+                <div class="col">
+                    <button type="button" [hidden]="!isSignedIn" style="float: left;" class="btn btn-round"
+                        (click)="open(content)"><i class="fa fa-plus"></i> Add Event</button>
+                </div>
+                <div class="col">
+                    <button type="button" style="float: right;" class="btn btn-round"
+                        (click)="resetevent()"><i class="fa fa-eye"></i> See All</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+            <article class="sample-column calendar-wrapper">
+                <igx-calendar #calendar>
+                </igx-calendar>
+            </article>
+        </div>
+    </div>
+</div>

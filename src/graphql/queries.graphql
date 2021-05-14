@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-query GetEvent($id: ID!) {
-  getEvent(id: $id) {
+query GetFestivalEvent($id: ID!) {
+  getFestivalEvent(id: $id) {
     id
     title
     date
@@ -10,12 +10,12 @@ query GetEvent($id: ID!) {
     updatedAt
   }
 }
-query ListEvents(
-  $filter: ModelEventFilterInput
+query ListFestivalEvents(
+  $filter: ModelFestivalEventFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listFestivalEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       title

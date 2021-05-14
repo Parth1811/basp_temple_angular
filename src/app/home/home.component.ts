@@ -1,4 +1,4 @@
-import { SpecialEvent } from './specialevent';
+import { CreateFestivalEventInput, FestivalEvent } from './../API.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
@@ -30,8 +30,6 @@ export class HomeComponent implements OnInit {
         case "signOut":
           this.state.user = null;
           break;
-        case "customOAuthState":
-          this.state.customState = data;
       }
     })
 
@@ -55,15 +53,14 @@ export class HomeComponent implements OnInit {
   }
 
   testFunction(){
-    let ev: SpecialEvent = {
-      id: "1",
+    let ev: CreateFestivalEventInput = {
       title: "Test",
-      date: "Wed May 12, 2020",
+      date: "Wed May 12 2021",
       img_link: "assets/img/uriel-soberanes.jpg",
       description:"This is a test event"
     }
 
-    this.api.CreateEvent(ev).then(event => {
+    this.api.CreateFestivalEvent(ev).then(event => {
       console.log('item created!');
     })
       .catch(e => {

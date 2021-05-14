@@ -12,6 +12,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { HomeComponent } from './home/home.component';
+import { SpecialDatesComponent } from './special-dates/special-dates.component';
+import { lbrPipe } from './home/home.pipe';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HammerModule } from "@angular/platform-browser";
 import { IgxCalendarModule } from 'igniteui-angular';
@@ -25,7 +28,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         AppComponent,
         NavbarComponent,
         FooterComponent,
-        HomeComponent
+        HomeComponent,
+        lbrPipe,
+        SpecialDatesComponent
     ],
     imports: [
         BrowserModule,

@@ -1,4 +1,10 @@
-type Event @model {
+type FestivalEvent @model
+  @auth (
+    rules: [
+      { allow: private },
+      { allow: public, provider: iam, operations: [read] }
+    ]
+  ){
   id: ID!
   title: String!
   date: String!

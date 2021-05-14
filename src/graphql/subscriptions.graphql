@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateEvent {
-  onCreateEvent {
+subscription OnCreateFestivalEvent {
+  onCreateFestivalEvent {
     id
     title
     date
@@ -10,8 +10,8 @@ subscription OnCreateEvent {
     updatedAt
   }
 }
-subscription OnUpdateEvent {
-  onUpdateEvent {
+subscription OnUpdateFestivalEvent {
+  onUpdateFestivalEvent {
     id
     title
     date
@@ -21,8 +21,8 @@ subscription OnUpdateEvent {
     updatedAt
   }
 }
-subscription OnDeleteEvent {
-  onDeleteEvent {
+subscription OnDeleteFestivalEvent {
+  onDeleteFestivalEvent {
     id
     title
     date
