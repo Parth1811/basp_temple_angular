@@ -119,10 +119,9 @@ export class SpecialDatesComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  deleteEvent(eventForm, ev: FestivalEvent){
-    let val = eventForm.value;
+  deleteEvent(id){
     let festev: DeleteFestivalEventInput = {
-      id: ev.id
+      id: id
     }
     this.api.DeleteFestivalEvent(festev).then(event => {
       console.log('item Deleted');

@@ -4,20 +4,11 @@
 .transform-perspective-left{
     transform: scale(1) perspective(2000px) rotateY(11deg) rotateX(2deg) rotate(-2deg)
 }
-
-@import '~igniteui-angular/lib/core/styles/themes/index';
-
-*::before,*::after{
-  box-sizing: border-box;
-}
-
-$custom-calendar-theme: igx-calendar-theme(
-  $date-current-text-color: #000000,
-  $date-current-bg-color: #4DD0E1,
-);
-
-:host {
- ::ng-deep {
-   @include igx-calendar($custom-calendar-theme);
- }
+@media (max-width: 767px){
+  .transform-perspective-left {
+    transform: scale(1);
+  }
+  .transform-perspective-right {
+    transform: scale(1);
+  }
 }

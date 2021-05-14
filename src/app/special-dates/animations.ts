@@ -14,10 +14,10 @@ export let slide_up  = trigger("slide-up", [
             ]),
             query('.card1-body', style({ opacity: 0 })),
             query('.card1-sep', style({ transform: "scale(0)" })),
-            // query('img', [
-            //     style({ opacity: 0 }),
-            //     animate(500, style({ opacity: 1 }))
-            // ])
+            query('img', [
+                style({ opacity: 0 }),
+                animate(500, style({ opacity: 1 }))
+            ])
         ]),
         group([
             query('.card1-body', animate(500, style({ opacity: 1 }))),

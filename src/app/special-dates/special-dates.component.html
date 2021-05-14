@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mr-auto ml-auto">
-            <h2 class="title">Special Dates</h2>
+            <h2 class="title">Festival Dates</h2>
         </div>
     </div>
     <div class="row">
@@ -57,14 +57,6 @@
                             </label>
                             <input name="img_link" ngModel type="text" value="" placeholder=""
                                 class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label for="password">
-                                Password
-                            </label>
-                            <input name="password" #password="ngModel" ngModel type="password" value="" placeholder=""
-                                class="form-control" required />
-                                <div *ngIf="password.invalid && password.touched" class="alert alert-danger"> Password cannot be empty </div>
                         </div>
                         <div class="modal-footer">
                             <button [disabled]="!eventForm.valid" type="submit" class="btn btn-primary btn-round">
@@ -141,21 +133,12 @@
                                             labnol.org </a> <br />
                                         3) copy paste the "Driect Image Link" in here. <br />
                                     </ng-template>
-                                    <label for="IMage Link">
+                                    <label for="Image Link">
                                         Image Link <i class="fa fa-question-circle" [ngbPopover]="popContent"
                                             popoverTitle="How to create an Image Link" popoverClass="popover-primary"></i>
                                     </label>
                                     <div class="input-group">
                                         <input name="img_link" [(ngModel)]="ev.img_link" type="text" value="" placeholder="" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">
-                                        Password
-                                    </label>
-                                    <div class="input-group">
-                                        <input name="password" #in_pass ngModel type="password" value="" placeholder="" class="form-control"
-                                            required />
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -170,20 +153,10 @@
                                             <h6 style="color: red;">The following event will be <strong>DELETED</strong></h6>
                                             <h4>{{ ev.title }}</h4>
                                             <h5>{{ ev.date }}</h5>
-                                            <form #deleteForm="ngForm">
-                                                <div class="form-group">
-                                                    <label for="password">
-                                                        Password
-                                                    </label>
-                                                    <div class="input-group">
-                                                        <input name="password" ngModel type="password" value="" placeholder="" class="form-control" required />
-                                                    </div>
-                                                </div>
-                                            </form>
                                         </div>
                                         <div class="modal-footer">
                                             <div class="left-side">
-                                                <button [disabled]="!deleteForm.valid" type="button" class="btn btn-danger btn-round" (click)="deleteEvent(deleteForm, ev)">Delete</button>
+                                                <button type="button" class="btn btn-danger btn-round" (click)="deleteEvent(ev.id)">Delete</button>
                                             </div>
                                             <div class="divider"></div>
                                             <div class="right-side">
@@ -191,12 +164,17 @@
                                             </div>
                                         </div>
                                     </ng-template>
-                                    <button (click)="open(deleteConfirm)" class="btn btn-danger btn-round">
-                                        Delete
-                                    </button>
-                                    <button [disabled]="!eventForm.valid" type="submit" class="btn btn-primary btn-round">
-                                        Save
-                                    </button>
+                                    <div class="left-side">
+                                        <button (click)="open(deleteConfirm)" class="btn btn-danger btn-round">
+                                            Delete
+                                        </button>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="right-side">
+                                        <button [disabled]="!eventForm.valid" type="submit" class="btn btn-primary btn-round">
+                                            Save
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -220,11 +198,11 @@
             </ngb-carousel>
             <div class="row">
                 <div class="col">
-                    <button type="button" [hidden]="!isSignedIn" style="float: left;" class="btn btn-round"
+                    <button type="button" [hidden]="!isSignedIn" style="float: left;" class="btn btn-round spaceout"
                         (click)="open(content)"><i class="fa fa-plus"></i> Add Event</button>
                 </div>
                 <div class="col">
-                    <button type="button" style="float: right;" class="btn btn-round"
+                    <button type="button" style="float: right;" class="btn btn-round spaceout"
                         (click)="resetevent()"><i class="fa fa-eye"></i> See All</button>
                 </div>
             </div>

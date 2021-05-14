@@ -52,20 +52,4 @@ export class HomeComponent implements OnInit {
     Auth.signOut();
   }
 
-  testFunction(){
-    let ev: CreateFestivalEventInput = {
-      title: "Test",
-      date: "Wed May 12 2021",
-      img_link: "assets/img/uriel-soberanes.jpg",
-      description:"This is a test event"
-    }
-
-    this.api.CreateFestivalEvent(ev).then(event => {
-      console.log('item created!');
-    })
-      .catch(e => {
-        console.log('error creating specialEvent...', e);
-      });
-  }
-
 }
