@@ -42,17 +42,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <ng-template #popContent>
-                                Here are the steps to create Image link. <br />
-                                1) Upload a Image to google photo and click on "Get Link" <br />
-                                2) Paste the link in <a style="color: blue;"
-                                    href="https://www.labnol.org/embed/google/photos/">
-                                    labnol.org </a> <br />
-                                3) copy paste the "Driect Image Link" in here. <br />
-                            </ng-template>
                             <label for="IMage Link">
-                                Image Link <i class="fa fa-question-circle" [ngbPopover]="popContent"
-                                    popoverTitle="How to create an Image Link" popoverClass="popover-primary"></i>
+                                Image Link
                             </label>
                             <input [hidden]="uploadDialog.uploaded" name="img_upload" #img_link_model=ngModel ngModel type="file" (change)="uploadImage($event)" value="" placeholder=""
                                 class="form-control" />
@@ -61,9 +52,10 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input name="img_link_dummy" disabled=true [(ngModel)]="uploadDialog.upload_file_path" type="text"  placeholder="" class="form-control"/>
-                                <input name="img_link" hidden=true [(ngModel)]="uploadDialog.upload_file_path" type="text"  placeholder="" class="form-control" required/>
-                                <amplify-s3-image *ngIf="uploadDialog.uploaded" [path]="uploadDialog.upload_file_path"></amplify-s3-image>
+                                <input name="img_link_dummy" disabled=true [(ngModel)]="uploadDialog.file_path" type="text"  placeholder="" class="form-control"/>
+                                <input name="img_link" hidden=true [(ngModel)]="uploadDialog.file_path" type="text"  placeholder="" class="form-control" required/>
+                                <!-- <amplify-s3-image *ngIf="uploadDialog.uploaded" [path]="uploadDialog.file_path"></amplify-s3-image> -->
+                                <img *ngIf="uploadDialog.uploaded" [src]="uploadDialog.s3_file_path" style="width: 100%;">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -134,16 +126,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <ng-template #popContent>
-                                        Here are the steps to create Image link. <br />
-                                        1) Upload a Image to google photo and click on "Get Link" <br />
-                                        2) Paste the link in <a style="color: blue;" href="https://www.labnol.org/embed/google/photos/">
-                                            labnol.org </a> <br />
-                                        3) copy paste the "Driect Image Link" in here. <br />
-                                    </ng-template>
                                     <label for="Image Link">
-                                        Image Link <i class="fa fa-question-circle" [ngbPopover]="popContent"
-                                            popoverTitle="How to create an Image Link" popoverClass="popover-primary"></i>
+                                        Image Link
                                     </label>
                                     <div class="input-group">
                                         <input [hidden]="uploadDialog.uploaded && !uploadDialog.uploadAnother " name="img_upload" #img_link_model=ngModel ngModel type="file"
@@ -156,13 +140,13 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input name="img_link_dummy" disabled=true [(ngModel)]="uploadDialog.upload_file_path" type="text"
+                                        <input name="img_link_dummy" disabled=true [(ngModel)]="uploadDialog.file_path" type="text"
                                             placeholder="" class="form-control" />
-                                        <input name="img_link" hidden=true [(ngModel)]="uploadDialog.upload_file_path" type="text" placeholder=""
+                                        <input name="img_link" hidden=true [(ngModel)]="uploadDialog.file_path" type="text" placeholder=""
                                             class="form-control" required />
-                                        <ng-container *ngIf="uploadDialog.uploaded && !uploadDialog.uploadAnother">
-                                            <amplify-s3-image #asi [imgKey]="uploadDialog.upload_file_path"></amplify-s3-image>
-                                        </ng-container>
+                                        <!-- <amplify-s3-image #asi [imgKey]="uploadDialog.file_path"></amplify-s3-image> -->
+                                        <img *ngIf="uploadDialog.uploaded" [src]="uploadDialog.s3_file_path" style="width: 100%;" >
+                                        <!-- && !uploadDialog.uploadAnother -->
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -184,7 +168,7 @@
                                             </div>
                                             <div class="divider"></div>
                                             <div class="right-side">
-                                                <button type="button" class="btn btn-default btn-round" (click)="c('Close click')">Cancel</button>
+                                                <button type="button" class="btn btn-default btn-round" (click)="modal.dismiss('Close click')">Cancel</button>
                                             </div>
                                         </div>
                                     </ng-template>
