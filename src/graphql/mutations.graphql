@@ -41,3 +41,330 @@ mutation DeleteFestivalEvent(
     updatedAt
   }
 }
+mutation CreateUser(
+  $input: CreateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  createUser(input: $input, condition: $condition) {
+    id
+    username
+    first_name
+    last_name
+    email
+    phone_number
+    profile_photo
+    address
+    birthdate
+    gender
+    isAdmin
+    createdAt
+    updatedAt
+    owner
+    tx_paid {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    tx_created {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+}
+mutation UpdateUser(
+  $input: UpdateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  updateUser(input: $input, condition: $condition) {
+    id
+    username
+    first_name
+    last_name
+    email
+    phone_number
+    profile_photo
+    address
+    birthdate
+    gender
+    isAdmin
+    createdAt
+    updatedAt
+    owner
+    tx_paid {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    tx_created {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+}
+mutation DeleteUser(
+  $input: DeleteUserInput!
+  $condition: ModelUserConditionInput
+) {
+  deleteUser(input: $input, condition: $condition) {
+    id
+    username
+    first_name
+    last_name
+    email
+    phone_number
+    profile_photo
+    address
+    birthdate
+    gender
+    isAdmin
+    createdAt
+    updatedAt
+    owner
+    tx_paid {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    tx_created {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+}
+mutation CreateTranscation(
+  $input: CreateTranscationInput!
+  $condition: ModelTranscationConditionInput
+) {
+  createTranscation(input: $input, condition: $condition) {
+    id
+    paidById
+    createdById
+    amount
+    tx_type
+    tx_id
+    tx_details
+    createdAt
+    updatedAt
+    paidBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+    createdBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateTranscation(
+  $input: UpdateTranscationInput!
+  $condition: ModelTranscationConditionInput
+) {
+  updateTranscation(input: $input, condition: $condition) {
+    id
+    paidById
+    createdById
+    amount
+    tx_type
+    tx_id
+    tx_details
+    createdAt
+    updatedAt
+    paidBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+    createdBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteTranscation(
+  $input: DeleteTranscationInput!
+  $condition: ModelTranscationConditionInput
+) {
+  deleteTranscation(input: $input, condition: $condition) {
+    id
+    paidById
+    createdById
+    amount
+    tx_type
+    tx_id
+    tx_details
+    createdAt
+    updatedAt
+    paidBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+    createdBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+  }
+}

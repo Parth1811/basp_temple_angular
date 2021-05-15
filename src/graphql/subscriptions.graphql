@@ -32,3 +32,312 @@ subscription OnDeleteFestivalEvent {
     updatedAt
   }
 }
+subscription OnCreateUser($owner: String) {
+  onCreateUser(owner: $owner) {
+    id
+    username
+    first_name
+    last_name
+    email
+    phone_number
+    profile_photo
+    address
+    birthdate
+    gender
+    isAdmin
+    createdAt
+    updatedAt
+    owner
+    tx_paid {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    tx_created {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+}
+subscription OnUpdateUser($owner: String) {
+  onUpdateUser(owner: $owner) {
+    id
+    username
+    first_name
+    last_name
+    email
+    phone_number
+    profile_photo
+    address
+    birthdate
+    gender
+    isAdmin
+    createdAt
+    updatedAt
+    owner
+    tx_paid {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    tx_created {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+}
+subscription OnDeleteUser($owner: String) {
+  onDeleteUser(owner: $owner) {
+    id
+    username
+    first_name
+    last_name
+    email
+    phone_number
+    profile_photo
+    address
+    birthdate
+    gender
+    isAdmin
+    createdAt
+    updatedAt
+    owner
+    tx_paid {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    tx_created {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+}
+subscription OnCreateTranscation {
+  onCreateTranscation {
+    id
+    paidById
+    createdById
+    amount
+    tx_type
+    tx_id
+    tx_details
+    createdAt
+    updatedAt
+    paidBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+    createdBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateTranscation {
+  onUpdateTranscation {
+    id
+    paidById
+    createdById
+    amount
+    tx_type
+    tx_id
+    tx_details
+    createdAt
+    updatedAt
+    paidBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+    createdBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteTranscation {
+  onDeleteTranscation {
+    id
+    paidById
+    createdById
+    amount
+    tx_type
+    tx_id
+    tx_details
+    createdAt
+    updatedAt
+    paidBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+    createdBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+  }
+}

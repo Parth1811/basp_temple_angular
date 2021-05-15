@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import { Auth, Hub, Storage } from 'aws-amplify';
 import { APIService } from '../API.service';
+import { AdminApiService } from 'app/admin-api.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   state = { user: null, customState: null };
   url = "https://templemanagement.auth.ap-south-1.amazoncognito.com/login?response_type=code&client_id=55uv5dkvc6072jhia9o6d37oen&redirect_uri=http://localhost:4200/"
 
-  constructor(private api: APIService, private router: Router) { }
+  constructor(private api: APIService, private adminapi: AdminApiService,private router: Router) { }
 
   ngOnInit(): void {
     Hub.listen("auth", ({ payload: { event, data } }) => {
@@ -53,16 +54,13 @@ export class HomeComponent implements OnInit {
   }
 
   testFunction(){
-    Storage.put('/home/parth/hello/test.py', 'public Content', {
-      level: 'public',
-      contentType: 'text/plain'
-    })
-    .then ( (result) => {
-      console.log(result);
-    })
-    .catch( (err) => {
-      console.log(err);
-    });
+    this.adminapi.listUsers(20)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error =>{
+        console.log(error)
+      })
   }
 
 }

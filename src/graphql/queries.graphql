@@ -28,3 +28,189 @@ query ListFestivalEvents(
     nextToken
   }
 }
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    username
+    first_name
+    last_name
+    email
+    phone_number
+    profile_photo
+    address
+    birthdate
+    gender
+    isAdmin
+    createdAt
+    updatedAt
+    owner
+    tx_paid {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    tx_created {
+      items {
+        id
+        paidById
+        createdById
+        amount
+        tx_type
+        tx_id
+        tx_details
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+}
+query GetTranscation($id: ID!) {
+  getTranscation(id: $id) {
+    id
+    paidById
+    createdById
+    amount
+    tx_type
+    tx_id
+    tx_details
+    createdAt
+    updatedAt
+    paidBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+    createdBy {
+      id
+      username
+      first_name
+      last_name
+      email
+      phone_number
+      profile_photo
+      address
+      birthdate
+      gender
+      isAdmin
+      createdAt
+      updatedAt
+      owner
+      tx_paid {
+        nextToken
+      }
+      tx_created {
+        nextToken
+      }
+    }
+  }
+}
+query ListTranscations(
+  $filter: ModelTranscationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTranscations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      paidById
+      createdById
+      amount
+      tx_type
+      tx_id
+      tx_details
+      createdAt
+      updatedAt
+      paidBy {
+        id
+        username
+        first_name
+        last_name
+        email
+        phone_number
+        profile_photo
+        address
+        birthdate
+        gender
+        isAdmin
+        createdAt
+        updatedAt
+        owner
+      }
+      createdBy {
+        id
+        username
+        first_name
+        last_name
+        email
+        phone_number
+        profile_photo
+        address
+        birthdate
+        gender
+        isAdmin
+        createdAt
+        updatedAt
+        owner
+      }
+    }
+    nextToken
+  }
+}

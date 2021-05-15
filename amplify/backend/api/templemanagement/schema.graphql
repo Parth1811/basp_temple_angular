@@ -1,7 +1,7 @@
 type FestivalEvent @model
   @auth (
     rules: [
-      { allow: private },
+      { allow: groups, groups: ["Admins"]  },
       { allow: public, provider: iam, operations: [read] }
     ]
   ){
@@ -10,4 +10,52 @@ type FestivalEvent @model
   date: String!
   description: String
   img_link: String
+}
+
+type User @model
+  @auth (
+    rules: [
+      { allow: owner },
+      { allow: groups, groups: ["Admins"], operations: [create, update, delete, read]  },
+    ]
+  ){
+  id: ID!
+  username: ID!
+  first_name: String!
+  last_name: String
+  email: String!
+  phone_number: String
+  profile_photo: String
+  address: String
+  birthdate: String
+  gender: Gender
+  isAdmin: Boolean
+  tx_paid: [Transcation] @connection(keyName: "paidByKey", fields: ["username"])
+  tx_created: [Transcation] @connection(keyName: "createByKey", fields: ["username"])
+
+}
+
+enum Gender{
+  MALE
+  FEMALE
+  OTHER
+}
+
+type Transcation @model
+  @key(name: "paidByKey", fields: ["paidById"])
+  @key(name: "createByKey", fields: ["createdById"])
+  @auth (
+    rules: [
+      { allow: groups, groups: ["Admins"], operations: [create, update, delete, read]  },
+    ]
+  ){
+  id: ID!
+  paidById: ID!
+  createdById: ID!
+  amount: Int!
+  tx_type: String!
+  tx_id: String!
+  tx_details: String
+  paidBy: User @connection(fields: ["paidById"])
+  createdBy: User @connection(fields: ["createdById"])
 }

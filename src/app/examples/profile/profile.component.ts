@@ -14,23 +14,8 @@ export class ProfileComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        Hub.listen("auth", ({ payload: { event, data } }) => {
-            switch (event) {
-                case "signIn":
-                    this.state.user = data;
-                    console.log(this.state);
-                    break;
-                case "signOut":
-                    this.state.user = null;
-                    break;
-                case "customOAuthState":
-                    this.state.customState = data;
-            }
-        })
-
         Auth.currentAuthenticatedUser()
             .then(user => {
-                console.log(user)
                 this.state.user = user
             })
             .catch(() => console.log("Not signed in"));
