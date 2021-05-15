@@ -5,15 +5,13 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProfileComponent } from './examples/profile/profile.component';
-import { SignupComponent } from './examples/signup/signup.component';
-import { LandingComponent } from './examples/landing/landing.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes =[
     { path: '',                 component: HomeComponent },
     // { path: 'home',             component: ComponentsComponent },
     { path: 'profile',          component: ProfileComponent, canActivate: [AuthGuard] },
-    { path: 'signup',           component: SignupComponent },
+    // { path: 'signup',           component: SignupComponent },
     // { path: 'landing',          component: LandingComponent },
     // { path: 'nucleoicons',      component: NucleoiconsComponent }
 ];
