@@ -12,6 +12,13 @@
   background-color: rgba(0,0,0,0.5);
 }
 
+
+amplify-s3-image {
+  // --height: 100%;
+  --width: 100%;
+}
+
+
 $custom-calendar-theme: igx-calendar-theme(
   $header-background: $default-color,
   $content-background: #fdfdfd,
@@ -132,4 +139,10 @@ $custom-calendar-theme: igx-calendar-theme(
 
 .form-control.ng-touched.ng-invalid{
   border: 2px solid red;
+}
+
+amplify-photo-picker{
+  section{
+    width: 100%;
+  }
 }

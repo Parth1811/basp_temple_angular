@@ -14,7 +14,7 @@ export let slide_up  = trigger("slide-up", [
             ]),
             query('.card1-body', style({ opacity: 0 })),
             query('.card1-sep', style({ transform: "scale(0)" })),
-            query('img', [
+            query('amplify-s3-image', [
                 style({ opacity: 0 }),
                 animate(500, style({ opacity: 1 }))
             ])

@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
-import { ComponentsModule } from './components/components.module';
+// import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
 import { HomeComponent } from './home/home.component';
 import { SpecialDatesComponent } from './special-dates/special-dates.component';
@@ -37,7 +37,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         NgbModule,
         FormsModule,
         RouterModule,
-        ComponentsModule,
+        // ComponentsModule,
         ExamplesModule,
         MatCheckboxModule,
         MatCardModule,

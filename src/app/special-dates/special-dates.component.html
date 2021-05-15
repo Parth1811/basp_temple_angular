@@ -50,13 +50,21 @@
                                     labnol.org </a> <br />
                                 3) copy paste the "Driect Image Link" in here. <br />
                             </ng-template>
-
                             <label for="IMage Link">
                                 Image Link <i class="fa fa-question-circle" [ngbPopover]="popContent"
                                     popoverTitle="How to create an Image Link" popoverClass="popover-primary"></i>
                             </label>
-                            <input name="img_link" ngModel type="text" value="" placeholder=""
+                            <input [hidden]="uploadDialog.uploaded" name="img_upload" #img_link_model=ngModel ngModel type="file" (change)="uploadImage($event)" value="" placeholder=""
                                 class="form-control" />
+                            <div [hidden]="!uploadDialog.showProgress"><><i class="fa fa-spinner fa-spin"></i> Uploading..... </div>
+                            <div [hidden]="!uploadDialog.uploaded"><i class="fa fa-done"></i> Uploaded </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input name="img_link_dummy" disabled=true [(ngModel)]="uploadDialog.upload_file_path" type="text"  placeholder="" class="form-control"/>
+                                <input name="img_link" hidden=true [(ngModel)]="uploadDialog.upload_file_path" type="text"  placeholder="" class="form-control" required/>
+                                <amplify-s3-image *ngIf="uploadDialog.uploaded" [path]="uploadDialog.upload_file_path"></amplify-s3-image>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button [disabled]="!eventForm.valid" type="submit" class="btn btn-primary btn-round">
@@ -72,7 +80,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-12">
                                 <div class="card1">
-                                    <img src="{{ ev.img_link }}">
+                                    <amplify-s3-image path="{{ ev.img_link }}"></amplify-s3-image>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
@@ -138,7 +146,23 @@
                                             popoverTitle="How to create an Image Link" popoverClass="popover-primary"></i>
                                     </label>
                                     <div class="input-group">
-                                        <input name="img_link" [(ngModel)]="ev.img_link" type="text" value="" placeholder="" class="form-control" />
+                                        <input [hidden]="uploadDialog.uploaded && !uploadDialog.uploadAnother " name="img_upload" #img_link_model=ngModel ngModel type="file"
+                                        (change)="uploadImage($event)" value="" placeholder="" class="form-control" />
+                                        <div [hidden]="!uploadDialog.showProgress">
+                                            <div><i class="fa fa-spinner fa-spin"></i> Uploading.....</div>
+                                        </div>
+                                        <div [hidden]="!uploadDialog.uploaded || uploadDialog.uploadAnother"><i class="fa fa-done"></i> Uploaded </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input name="img_link_dummy" disabled=true [(ngModel)]="uploadDialog.upload_file_path" type="text"
+                                            placeholder="" class="form-control" />
+                                        <input name="img_link" hidden=true [(ngModel)]="uploadDialog.upload_file_path" type="text" placeholder=""
+                                            class="form-control" required />
+                                        <ng-container *ngIf="uploadDialog.uploaded && !uploadDialog.uploadAnother">
+                                            <amplify-s3-image #asi [imgKey]="uploadDialog.upload_file_path"></amplify-s3-image>
+                                        </ng-container>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -181,10 +205,11 @@
                     </ng-template>
 
                     <div class="card1" [@slide-up]="slide ? 'default' : 'collaspe'">
-                        <img src="{{ ev.img_link }}">
+                        <!-- <img src="{{ ev.img_link }}"> -->
+                        <amplify-s3-image path="{{ ev.img_link }}"></amplify-s3-image>
                         <div class="card1-date">{{ ev.date }}</div>
                         <div class="card1-icon">
-                            <button type="button" [hidden]="!isSignedIn" (click)="open(editcontent)" class="btn btn-trans-black btn-round"><i class="fa fa-edit"></i></button>
+                            <button type="button" [hidden]="!isSignedIn" (click)="openEditForm(editcontent, ev)" class="btn btn-trans-black btn-round"><i class="fa fa-edit"></i></button>
                             <!-- <button type="button" (click)="resetevent()" class="btn btn-trans-black btn-round"><i class="fa fa-eye"></i></button> -->
                             <button type="button" (click)="expandCard(preview)" class="btn btn-trans-black btn-round"><i class="fa fa-expand"></i></button>
                         </div>

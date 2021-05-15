@@ -21,7 +21,9 @@ const awsmobile = {
             "options": {
                 "AdvancedSecurityDataCollectionFlag": false
             }
-        }
+        },
+        "aws_user_files_s3_bucket": "templemanagement99260d11f1394483a5e7a3373212871184253-dev",
+        "aws_user_files_s3_bucket_region": "ap-south-1"
     },
     "prod": {
         "aws_project_region": "ap-south-1",
@@ -42,7 +44,9 @@ const awsmobile = {
             "options": {
                 "AdvancedSecurityDataCollectionFlag": false
             }
-        }
+        },
+        "aws_user_files_s3_bucket": "templemanagement99260d11f1394483a5e7a3373212871184253-dev",
+        "aws_user_files_s3_bucket_region": "ap-south-1"
     }
 }
 

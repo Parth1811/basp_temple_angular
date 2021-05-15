@@ -4,7 +4,7 @@ import { slide_up } from './animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DateRangeType, IgxCalendarComponent } from "igniteui-angular";
 import { NgbModal, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
-import { Auth } from 'aws-amplify';
+import { Auth, Hub, Storage } from 'aws-amplify';
 
 @Component({
   selector: 'app-special-dates',
@@ -22,6 +22,13 @@ export class SpecialDatesComponent implements OnInit {
   event_dict = {};
   slide = true;
   db_data: FestivalEvent[] = [];
+  prefix_path = "festival-images/";
+  uploadDialog = {
+    showProgress: false,
+    uploaded: false,
+    upload_file_path: "",
+    uploadAnother: false
+  }
   @ViewChild("calendar", { static: true }) public calendar: IgxCalendarComponent;
   isSignedIn: boolean = false;
 
@@ -69,7 +76,24 @@ export class SpecialDatesComponent implements OnInit {
   }
 
   open(content) {
+    this.uploadDialog = {
+      showProgress: false,
+      uploaded: false,
+      upload_file_path: "",
+      uploadAnother: false
+
+    }
     this.modalService.dismissAll();
+    this.modalService.open(content);
+  }
+
+  openEditForm(content, ev){
+    this.uploadDialog = {
+      showProgress: false,
+      uploaded: true,
+      upload_file_path: ev.img_link,
+      uploadAnother: true
+    }
     this.modalService.open(content);
   }
 
@@ -97,6 +121,12 @@ export class SpecialDatesComponent implements OnInit {
         console.log('error creating specialEvent...', e);
     });
 
+    this.uploadDialog = {
+      showProgress: false,
+      uploaded: false,
+      upload_file_path: "",
+      uploadAnother: false
+    }
     this.modalService.dismissAll();
     eventForm.reset();
   }
@@ -116,6 +146,13 @@ export class SpecialDatesComponent implements OnInit {
       .catch(e => {
         console.log('error Updating specialEvent...', e);
       });;
+
+    this.uploadDialog = {
+      showProgress: false,
+      uploaded: false,
+      upload_file_path: "",
+      uploadAnother: false
+    }
     this.modalService.dismissAll();
   }
 
@@ -150,4 +187,22 @@ export class SpecialDatesComponent implements OnInit {
     this.modalService.open(preview, { size: 'xl' });
   }
 
+  uploadImage(event){
+    console.log("Uploading....")
+    const file = event.target.files[0];
+    const upload_path = this.prefix_path + file.name;
+    this.uploadDialog.showProgress = true;
+    try {
+      let result = Storage.put(upload_path, file, {
+        contentType: 'image/png', // contentType is optional
+        track: true,
+      });
+      this.uploadDialog.upload_file_path = upload_path;
+    } catch (error) {
+      console.log('Error uploading file: ', error);
+    }
+    this.uploadDialog.uploaded = true
+    this.uploadDialog.showProgress = false;
+    this.uploadDialog.uploadAnother = false;
+  }
 }

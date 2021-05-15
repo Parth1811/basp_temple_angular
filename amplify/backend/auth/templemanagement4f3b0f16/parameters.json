@@ -1,6 +1,6 @@
 {
     "identityPoolName": "templemanagement4f3b0f16_identitypool_4f3b0f16",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "temple4f3b0f16",
     "userPoolName": "templemanagement4f3b0f16_userpool_4f3b0f16",
     "autoVerifiedAttributes": [

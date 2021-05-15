@@ -4,7 +4,7 @@
 .transform-perspective-left{
     transform: scale(1) perspective(2000px) rotateY(11deg) rotateX(2deg) rotate(-2deg)
 }
-@media (max-width: 767px){
+@media (max-width: 991px){
   .transform-perspective-left {
     transform: scale(1);
   }

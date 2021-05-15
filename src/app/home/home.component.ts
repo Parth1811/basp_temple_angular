@@ -1,8 +1,8 @@
 import { CreateFestivalEventInput, FestivalEvent } from './../API.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-import { Auth, Hub } from 'aws-amplify';
+import { NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { Auth, Hub, Storage } from 'aws-amplify';
 import { APIService } from '../API.service';
 
 @Component({
@@ -50,6 +50,19 @@ export class HomeComponent implements OnInit {
 
   signout() {
     Auth.signOut();
+  }
+
+  testFunction(){
+    Storage.put('/home/parth/hello/test.py', 'public Content', {
+      level: 'public',
+      contentType: 'text/plain'
+    })
+    .then ( (result) => {
+      console.log(result);
+    })
+    .catch( (err) => {
+      console.log(err);
+    });
   }
 
 }

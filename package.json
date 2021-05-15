@@ -9,6 +9,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "clea-aws": "find ./node_modules/@aws-amplify  -type f -exec sed -i -e 's/@media (min-width: 672px){.section{width:var(--width, 28.75rem)}}/ /g' {} \\;",
     "build": "ng build --prod --output-path dist/templemanagement --optimization --base-href=\"https://dev.df6fo5c4hc07u.amplifyapp.com/\"",
     "build-save": "ng build --prod --optimization --output-path bsp_temple/ --base-href=\"https://parth1811.github.io/bsp_temple/\"",
     "test": "ng test",
