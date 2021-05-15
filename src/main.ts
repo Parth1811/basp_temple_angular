@@ -30,20 +30,4 @@ if (environment.production) {
   Auth.configure({ oauth: aws_exports.dev.oauth });
 }
 
-Auth.currentAuthenticatedUser({
-  bypassCache: false
-})
-  .then(user => {
-    if (user) {
-      Amplify.configure({
-        "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
-      });
-    }
-  })
-  .catch(() => {
-    Amplify.configure({
-      "aws_appsync_authenticationType": "AWS_IAM",
-    });
-  });
-
 platformBrowserDynamic().bootstrapModule(AppModule);

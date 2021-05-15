@@ -5,6 +5,7 @@ import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import Amplify, { Auth } from 'aws-amplify';
 
 @Component({
     selector: 'app-root',
@@ -48,6 +49,22 @@ export class AppComponent implements OnInit {
             body.classList.add('ie-background');
 
         }
+
+        Auth.currentAuthenticatedUser({
+            bypassCache: false
+        })
+            .then(user => {
+                if (user) {
+                    Amplify.configure({
+                        "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
+                    });
+                }
+            })
+            .catch(() => {
+                Amplify.configure({
+                    "aws_appsync_authenticationType": "AWS_IAM",
+                });
+            });
 
     }
     removeFooter() {

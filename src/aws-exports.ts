@@ -12,6 +12,13 @@ const awsmobile = {
         "aws_cognito_region": "ap-south-1",
         "aws_user_pools_id": "ap-south-1_7sV4xop2D",
         "aws_user_pools_web_client_id": "55uv5dkvc6072jhia9o6d37oen",
+        "aws_cloud_logic_custom": [
+            {
+                "name": "AdminQueries",
+                "endpoint": "https://bkj8kbxk2i.execute-api.ap-south-1.amazonaws.com/dev",
+                "region": "ap-south-1"
+            }
+        ],
         "oauth": {
             "domain": "templemanagement.auth.ap-south-1.amazoncognito.com",
             "scope": ["phone", "email", "profile", "openid", "aws.cognito.signin.user.admin"],
@@ -35,6 +42,13 @@ const awsmobile = {
         "aws_cognito_region": "ap-south-1",
         "aws_user_pools_id": "ap-south-1_7sV4xop2D",
         "aws_user_pools_web_client_id": "6o59lr7i146pb3msooc90fto0r",
+        "aws_cloud_logic_custom": [
+            {
+                "name": "AdminQueries",
+                "endpoint": "https://bkj8kbxk2i.execute-api.ap-south-1.amazonaws.com/dev",
+                "region": "ap-south-1"
+            }
+        ],
         "oauth": {
             "domain": "templemanagement.auth.ap-south-1.amazoncognito.com",
             "scope": ["phone", "email", "profile", "openid", "aws.cognito.signin.user.admin"],

@@ -39,7 +39,12 @@ export class SpecialDatesComponent implements OnInit {
 
     Auth.currentAuthenticatedUser()
       .then(user => {
-        this.isSignedIn = true;
+        let groupArray = user.signInUserSession.accessToken.payload["cognito:groups"];
+        if (groupArray.find(elem => elem == "Admins")){
+          this.isSignedIn = true;
+        } else{
+          this.isSignedIn = false;
+        }
       })
       .catch(() => {
         this.isSignedIn = false;
