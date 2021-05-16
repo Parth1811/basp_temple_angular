@@ -27,6 +27,7 @@ export class UserHandler {
     gender: Gender
     isAdmin: boolean
     static attrnames = {
+        id: "ID",
         username: "User Name",
         first_name: "First Name",
         last_name: "Last Name",

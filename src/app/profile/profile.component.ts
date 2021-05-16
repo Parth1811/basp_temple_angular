@@ -1,7 +1,7 @@
 import { AdminApiService } from 'app/admin-api.service';
 import { CustomAdapter } from './../special-dates/specialevent';
 import { UserHandler } from './user-handler';
-import { APIService, CreateUserInput, Gender, GetUserQuery, ModelUserFilterInput, ModelIDInput } from './../API.service';
+import { APIService, CreateUserInput, Gender, GetUserQuery, ModelUserFilterInput, ModelIDInput, ListTranscationsQuery, ModelTranscationFilterInput } from './../API.service';
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { Auth, Hub, Storage } from 'aws-amplify';
 import { NgbCalendar, NgbDate, NgbDateAdapter, NgbInputDatepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,8 +24,8 @@ export class ProfileComponent implements OnInit {
     hasProfilePhoto = false;
     prefix_path = "profile-images/";
     uploadDialog = new UploadHandle;
+    transcations = [];
     public genderTypes = Object.values(Gender);
-    createUserResponse: string;
     today = {
         year: (new Date()).getFullYear(),
         month: (new Date()).getMonth() - 1,
@@ -39,10 +39,12 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         Auth.currentAuthenticatedUser()
-            .then(user => {
-                this.loadUserDetails(user);
+            .then(async user => {
+                await this.loadUserDetails(user);
+                await this.listAllTransactions();
+                console.log(this.transcations)
             })
-            .catch(() => console.log("Not signed in"));
+            .catch((error) => console.log(error));
     }
 
     signout(){
@@ -55,17 +57,16 @@ export class ProfileComponent implements OnInit {
 
     async updateUserDetails(userDetailsForm){
         this.api.UpdateUser(this.user.getUpdateUserInput());
-
         this.modalService.dismissAll();
     }
 
-    loadUserDetails(user){
+    async loadUserDetails(user){
         let quser: ModelUserFilterInput = {
             username: {
                 eq: user.username
             },
         }
-        this.api.ListUsers(quser)
+        await this.api.ListUsers(quser)
             .then(event =>{
                 if (event.items.length > 0) {
                     this.user = new UserHandler(event.items[0])
@@ -92,25 +93,6 @@ export class ProfileComponent implements OnInit {
             })
     }
 
-    createUSer(form){
-        this.adminapi.createUser(form.value.email)
-            .then(data => {
-                if(!data.error){
-                    let newuser: CreateUserInput = {
-                        username: data.user.Username,
-                        email: form.value.email,
-                        isAdmin: false
-                    }
-                    this.api.CreateUser(newuser)
-                        .then(() => console.log("New user created"))
-                        .catch(error => { console.log(error) })
-                    }
-                this.createUserResponse = data.message;
-            })
-            .catch(error => { console.log(error) })
-    }
-
-
     async uploadImage(event) {
         console.log("Uploading....")
         const file = event.target.files[0];
@@ -130,5 +112,17 @@ export class ProfileComponent implements OnInit {
         this.uploadDialog.uploaded = true
         this.uploadDialog.showProgress = false;
         this.uploadDialog.uploadAnother = false;
+    }
+
+    listAllTransactions(){
+        let a: ModelTranscationFilterInput
+        this.api.ListTranscations({
+            paidById: {
+                eq: this.user.id
+            }
+        }).then(data => {
+            console.log(data)
+            this.transcations = data.items} )
+        .catch(error => console.log(error))
     }
 }

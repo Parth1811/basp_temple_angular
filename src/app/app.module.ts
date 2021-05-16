@@ -22,6 +22,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
         lbrPipe,
         EscapeHtmlPipe,
         SpecialDatesComponent,
-        ProfileComponent
+        ProfileComponent,
+        AdminPanelComponent
     ],
     imports: [
         BrowserModule,

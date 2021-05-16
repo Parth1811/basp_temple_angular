@@ -31,31 +31,35 @@
                         </ngb-tab>
                         <ngb-tab title="Transactions">
                             <ng-template ngbTabContent>
-                                <h3 class="text-muted">No Transactions :(</h3>
-                                <br>
+                                <h3 *ngIf="!transcations.length" class="text-muted">No Transactions :(</h3>
+                                <table *ngIf="transcations.length" class="table">
+                                    <thead>
+                                        <th>No.</th>
+                                        <th>Paid By</th>
+                                        <th>Reported By</th>
+                                        <th>Transaction Type</th>
+                                        <th>Tranaction ID</th>
+                                        <th>Amount</th>
+                                    </thead>
+                                    <tbody *ngFor="let tx of transcations; let i=index">
+                                        <tr>
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ tx.paidBy.first_name }} {{ tx.paidBy.last_name }}</td>
+                                            <td>{{ tx.createdBy.first_name }} {{ tx.createdBy.last_name }}</td>
+                                            <td>{{ tx.tx_type }}</td>
+                                            <td>{{ tx.tx_id }}</td>
+                                            <td>{{ tx.amount }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <button (click)="listAllTransactions()" class="btn btn-round">Refresh List</button>
+
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab *ngIf="user && user.isAdmin" title="Admin Pannel">
                             <ng-template ngbTabContent>
-                                <div class="container fix-width">
-                                    <h4>Create User Account</h4>
-                                        <form #newUserForm="ngForm" (ngSubmit)="createUSer(newUserForm)">
-                                            <div class="row">
-                                                <div class="col ">
-                                                    <input name="email" #email="ngModel" ngModel type="email" placeholder="Enter Email"
-                                                        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" required />
-                                                    <div *ngIf="email.invalid && email.touched" class="alert alert-danger"> Enter a Valid email. </div>
-                                                </div>
-                                                <div class="col-md-auto">
-                                                    <button [disabled]="!newUserForm.valid" type="submit" class="btn btn-primary btn-block btn-round">
-                                                        Save
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        {{ createUserResponse }}
-                                    <br>
-                                </div>
+                                <app-admin-panel [user]="user"></app-admin-panel>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>

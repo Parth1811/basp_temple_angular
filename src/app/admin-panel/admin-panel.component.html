@@ -1,0 +1,22 @@
+<div class="container fix-width">
+    <h4>Create User Account</h4>
+    <form #newUserForm="ngForm" (ngSubmit)="createUSer(newUserForm)">
+        <div class="row">
+            <div class="col ">
+                <input name="email" #email="ngModel" ngModel type="email" placeholder="Enter Email"
+                    pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" required />
+                <div *ngIf="email.invalid && email.touched" class="alert alert-danger"> Enter a Valid email. </div>
+            </div>
+            <div class="col-md-auto">
+                <button [disabled]="!newUserForm.valid" type="submit" class="btn btn-primary btn-block btn-round">
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+    {{ createUserResponse }}
+    <br>
+    <button (click)="createTranscation()" class="btn btn-primary btn-round">
+        Test
+    </button>
+</div>
