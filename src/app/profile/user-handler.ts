@@ -34,7 +34,8 @@ export class UserHandler {
         phone_number: "Phone Number",
         address: "Address",
         birthdate: "Birth Date",
-        gender: "Gender"
+        gender: "Gender",
+        isAdmin: "Has Admin Access"
     }
 
     constructor(user?: User){

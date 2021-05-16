@@ -5,7 +5,7 @@ import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify, { Auth, Hub } from 'aws-amplify';
 
 @Component({
     selector: 'app-root',
@@ -49,6 +49,16 @@ export class AppComponent implements OnInit {
             body.classList.add('ie-background');
 
         }
+
+        Hub.listen("auth", ({ payload: { event, data } }) => {
+            switch (event) {
+                case "signIn":
+                    this.router.navigate(["/profile"])
+                    break;
+                case "signOut":
+                    break;
+            }
+        })
 
         Auth.currentAuthenticatedUser({
             bypassCache: false

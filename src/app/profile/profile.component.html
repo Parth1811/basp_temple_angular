@@ -12,7 +12,7 @@
                 <div class="name">
                     <h4 *ngIf="user" class="title">{{ user.first_name }} {{ user.last_name }}<br /></h4>
                     <button (click)="signout()" class="btn btn-outline-default btn-round">Log out</button>
-                    <button (click)="testFunction()" class="btn btn-outline-default btn-round">Test</button>
+                    <!-- <button (click)="testFunction()" class="btn btn-outline-default btn-round">Test</button> -->
                 </div>
             </div>
             <div class="nav-tabs-navigation">
@@ -47,7 +47,7 @@
                                                     <div *ngIf="email.invalid && email.touched" class="alert alert-danger"> Enter a Valid email. </div>
                                                 </div>
                                                 <div class="col-md-auto">
-                                                    <button [disabled]="!newUserForm.valid" type="submit" class="btn btn-primary btn-round">
+                                                    <button [disabled]="!newUserForm.valid" type="submit" class="btn btn-primary btn-block btn-round">
                                                         Save
                                                     </button>
                                                 </div>

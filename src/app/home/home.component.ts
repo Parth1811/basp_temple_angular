@@ -23,25 +23,16 @@ export class HomeComponent implements OnInit {
   constructor(private api: APIService, private adminapi: AdminApiService,private router: Router) { }
 
   ngOnInit(): void {
-    Hub.listen("auth", ({ payload: { event, data } }) => {
-      switch (event) {
-        case "signIn":
-          this.state.user = data;
-          console.log(this.state);
-          this.router.navigate(["/profile"])
-          break;
-        case "signOut":
-          this.state.user = null;
-          break;
-      }
-    })
 
     Auth.currentAuthenticatedUser()
       .then(user => {
         console.log(user)
         this.state.user = user
       })
-      .catch(() => console.log("Not signed in"));
+      .catch(() => {
+        this.state.user = null
+        console.log("Not signed in")
+      });
 
   }
 
