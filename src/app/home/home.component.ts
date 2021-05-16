@@ -1,10 +1,12 @@
-import { CreateFestivalEventInput, FestivalEvent } from './../API.service';
+import { CreateFestivalEventInput, FestivalEvent, CreateUserInput } from './../API.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import { Auth, Hub, Storage } from 'aws-amplify';
 import { APIService } from '../API.service';
 import { AdminApiService } from 'app/admin-api.service';
+import { SHA3 } from 'crypto.js';
+import { first } from 'rxjs-compat/operator/first';
 
 @Component({
   selector: 'app-home',
@@ -54,13 +56,18 @@ export class HomeComponent implements OnInit {
   }
 
   testFunction(){
-    this.adminapi.listUsers(20)
+    this.adminapi.createUser("parth4iitb@gmail.com")
       .then(data => {
-        console.log(data);
+        let newuser: CreateUserInput = {
+          username: data.user.Username,
+          email: "anisharoy203@gmail.com",
+          isAdmin: false
+        }
+        this.api.CreateUser(newuser)
+          .then(() => "New user created")
+          .catch(error => { console.log(error) })
       })
-      .catch(error =>{
-        console.log(error)
-      })
+      .catch(error =>{console.log(error)})
   }
 
 }

@@ -6,10 +6,11 @@
         <div class="container">
             <div class="owner">
                 <div class="avatar">
-                    <img src="./assets/img/default_user.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    <img [hidden]="!hasProfilePhoto" [src]="uploadDialog.s3_file_path" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                    <img [hidden]="hasProfilePhoto" src="./assets/img/default_user.png" alt="Circle Image" class="img-circle img-no-padding img-responsive">
                 </div>
                 <div class="name">
-                    <h4 *ngIf="state.user" class="title">{{ state.user.attributes.email }}<br /></h4>
+                    <h4 *ngIf="user" class="title">{{ user.first_name }} {{ user.last_name }}<br /></h4>
                     <button (click)="signout()" class="btn btn-outline-default btn-round">Log out</button>
                     <button (click)="testFunction()" class="btn btn-outline-default btn-round">Test</button>
                 </div>
@@ -19,14 +20,42 @@
                     <ngb-tabset [justify]="'center'">
                         <ngb-tab title="Info">
                             <ng-template ngbTabContent >
-
+                                 <div class="container fix-width">
+                                    <table *ngIf="user" class="table">
+                                        <tbody [innerHTML]="user.generateHTMLTable() | keepHtml">
+                                        </tbody>
+                                    </table>
+                                    <button (click)="open(UserDetailModal)" class="btn btn-round">Update User Details</button>
+                                </div>
                             </ng-template>
                         </ngb-tab>
                         <ngb-tab title="Transactions">
                             <ng-template ngbTabContent>
-                                <h3 class="text-muted">Not following anyone yet :(</h3>
+                                <h3 class="text-muted">No Transactions :(</h3>
                                 <br>
-                                <button class="btn btn-warning btn-round">Find artists</button>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab *ngIf="user && user.isAdmin" title="Admin Pannel">
+                            <ng-template ngbTabContent>
+                                <div class="container fix-width">
+                                    <h4>Create User Account</h4>
+                                        <form #newUserForm="ngForm" (ngSubmit)="createUSer(newUserForm)">
+                                            <div class="row">
+                                                <div class="col ">
+                                                    <input name="email" #email="ngModel" ngModel type="email" placeholder="Enter Email"
+                                                        pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" required />
+                                                    <div *ngIf="email.invalid && email.touched" class="alert alert-danger"> Enter a Valid email. </div>
+                                                </div>
+                                                <div class="col-md-auto">
+                                                    <button [disabled]="!newUserForm.valid" type="submit" class="btn btn-primary btn-round">
+                                                        Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        {{ createUserResponse }}
+                                    <br>
+                                </div>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>
@@ -35,3 +64,104 @@
         </div>
     </div>
 </div>
+
+<ng-template #UserDetailModal let-modal>
+    <div class="modal-header">
+        <h3 class="modal-title description" id="modal-basic-title">Update User Details</h3>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form #userDetailForm="ngForm" (ngSubmit)="updateUserDetails(userDetailForm)">
+            <div class="form-group">
+                <label for="first_name">
+                    First Name
+                </label>
+                <input name="first_name" #first_name="ngModel" [(ngModel)]="user.first_name" type="text" value="" placeholder=""
+                    class="form-control" required />
+                <div *ngIf="first_name.invalid && first_name.touched" class="alert alert-danger"> First Name cannot be
+                    empty </div>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">
+                    Last Name
+                </label>
+                <input name="last_name" #last_name="ngModel" [(ngModel)]="user.last_name" type="text" value="" placeholder=""
+                    class="form-control" />
+                <div *ngIf="last_name.invalid && last_name.touched" class="alert alert-danger"> Last Name cannot be
+                    empty </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone_number">
+                    Phone Number
+                </label>
+                <input name="phone_number" #phone_number="ngModel" [(ngModel)]="user.phone_number" type="text" value="" placeholder=""
+                    class="form-control" pattern="^\d{10}$" />
+                <div *ngIf="phone_number.invalid && phone_number.touched" class="alert alert-danger"> Enter valid phone number </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">
+                    Address
+                </label>
+                <textarea name="address" #address="ngModel" [(ngModel)]="user.address" type="text" value=""
+                    placeholder="" class="form-control" ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="dateOfEvent">
+                    Birth Date
+                </label>
+                <div class="input-group">
+                    <input class="form-control datetimepicker" placeholder="yyyy-mm-dd" name="date" [(ngModel)]="user.birthdate"
+                        ngbDatepicker [minDate]="{year:1920,month:1,day:1}" #dp="ngbDatepicker" [maxDate]="today" (click)="dp.toggle()" >
+                </div>
+            </div>
+
+            <div class="form-group state_raw">
+                <label for="state_raw">Gender</label>
+                <select class="custom-select" name="state_raw" [(ngModel)]="user.gender" required>
+                    <option [value]="genderType" *ngFor="let genderType of genderTypes">{{ genderType }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="profile_photo">
+                    Profile Photo
+                </label>
+                <div class="input-group">
+                    <input [hidden]="uploadDialog.uploaded && !uploadDialog.uploadAnother " name="img_upload"
+                        #img_link_model=ngModel ngModel type="file" (change)="uploadImage($event)" value="" placeholder=""
+                        class="form-control"Image Link />
+                    <div [hidden]="!uploadDialog.showProgress">
+                        <div><i class="fa fa-spinner fa-spin"></i> Uploading.....</div>
+                    </div>
+                    <div [hidden]="!uploadDialog.uploaded || uploadDialog.uploadAnother"><i class="fa fa-done"></i> Uploaded </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input name="img_link_dummy" disabled=true [(ngModel)]="uploadDialog.file_path" type="text" placeholder=""
+                        class="form-control" />
+                    <input name="profile_photo" hidden=true [(ngModel)]="uploadDialog.file_path" type="text" placeholder=""
+                        class="form-control" />
+                    <!-- <amplify-s3-image #asi [imgKey]="uploadDialog.file_path"></amplify-s3-image> -->
+                    <img *ngIf="uploadDialog.uploaded" [src]="uploadDialog.s3_file_path" style="width: 100%;">
+                    <!-- && !uploadDialog.uploadAnother -->
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button [disabled]="!userDetailForm.valid" type="submit" class="btn btn-primary btn-round">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+

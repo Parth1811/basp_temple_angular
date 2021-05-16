@@ -59,7 +59,6 @@ mutation CreateUser(
     isAdmin
     createdAt
     updatedAt
-    owner
     tx_paid {
       items {
         id
@@ -108,7 +107,6 @@ mutation UpdateUser(
     isAdmin
     createdAt
     updatedAt
-    owner
     tx_paid {
       items {
         id
@@ -157,7 +155,6 @@ mutation DeleteUser(
     isAdmin
     createdAt
     updatedAt
-    owner
     tx_paid {
       items {
         id
@@ -216,7 +213,6 @@ mutation CreateTranscation(
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -238,7 +234,6 @@ mutation CreateTranscation(
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -276,7 +271,6 @@ mutation UpdateTranscation(
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -298,7 +292,6 @@ mutation UpdateTranscation(
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -336,7 +329,6 @@ mutation DeleteTranscation(
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -358,7 +350,6 @@ mutation DeleteTranscation(
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }

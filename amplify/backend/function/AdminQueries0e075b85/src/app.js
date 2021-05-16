@@ -24,6 +24,7 @@ const {
   getUser,
   listUsers,
   listGroups,
+  createUser,
   listGroupsForUser,
   listUsersInGroup,
   signUserOut,
@@ -230,6 +231,20 @@ app.get('/listUsersInGroup', async (req, res, next) => {
     } else {
       response = await listUsersInGroup(req.query.groupname);
     }
+    res.status(200).json(response);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/createUser', async (req, res, next) => {
+  if (!req.body.email) {
+    const err = new Error('email is required');
+    err.statusCode = 400;
+    return next(err);
+  }
+  try {
+    const response = await createUser(req.body.email);
     res.status(200).json(response);
   } catch (err) {
     next(err);

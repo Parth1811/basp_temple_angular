@@ -92,7 +92,7 @@ export type DeleteFestivalEventInput = {
 export type CreateUserInput = {
   id?: string | null;
   username: string;
-  first_name: string;
+  first_name?: string | null;
   last_name?: string | null;
   email: string;
   phone_number?: string | null;
@@ -110,7 +110,6 @@ export enum Gender {
 }
 
 export type ModelUserConditionInput = {
-  username?: ModelIDInput | null;
   first_name?: ModelStringInput | null;
   last_name?: ModelStringInput | null;
   email?: ModelStringInput | null;
@@ -123,22 +122,6 @@ export type ModelUserConditionInput = {
   and?: Array<ModelUserConditionInput | null> | null;
   or?: Array<ModelUserConditionInput | null> | null;
   not?: ModelUserConditionInput | null;
-};
-
-export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
 };
 
 export type ModelGenderInput = {
@@ -157,7 +140,7 @@ export type User = {
   __typename: "User";
   id?: string;
   username?: string;
-  first_name?: string;
+  first_name?: string | null;
   last_name?: string | null;
   email?: string;
   phone_number?: string | null;
@@ -168,7 +151,6 @@ export type User = {
   isAdmin?: boolean | null;
   createdAt?: string;
   updatedAt?: string;
-  owner?: string | null;
   tx_paid?: ModelTranscationConnection;
   tx_created?: ModelTranscationConnection;
 };
@@ -232,6 +214,22 @@ export type ModelTranscationConditionInput = {
   and?: Array<ModelTranscationConditionInput | null> | null;
   or?: Array<ModelTranscationConditionInput | null> | null;
   not?: ModelTranscationConditionInput | null;
+};
+
+export type ModelIDInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
 };
 
 export type ModelIntInput = {
@@ -350,7 +348,7 @@ export type CreateUserMutation = {
   __typename: "User";
   id: string;
   username: string;
-  first_name: string;
+  first_name?: string | null;
   last_name?: string | null;
   email: string;
   phone_number?: string | null;
@@ -361,7 +359,6 @@ export type CreateUserMutation = {
   isAdmin?: boolean | null;
   createdAt: string;
   updatedAt: string;
-  owner?: string | null;
   tx_paid?: {
     __typename: "ModelTranscationConnection";
     items?: Array<{
@@ -400,7 +397,7 @@ export type UpdateUserMutation = {
   __typename: "User";
   id: string;
   username: string;
-  first_name: string;
+  first_name?: string | null;
   last_name?: string | null;
   email: string;
   phone_number?: string | null;
@@ -411,7 +408,6 @@ export type UpdateUserMutation = {
   isAdmin?: boolean | null;
   createdAt: string;
   updatedAt: string;
-  owner?: string | null;
   tx_paid?: {
     __typename: "ModelTranscationConnection";
     items?: Array<{
@@ -450,7 +446,7 @@ export type DeleteUserMutation = {
   __typename: "User";
   id: string;
   username: string;
-  first_name: string;
+  first_name?: string | null;
   last_name?: string | null;
   email: string;
   phone_number?: string | null;
@@ -461,7 +457,6 @@ export type DeleteUserMutation = {
   isAdmin?: boolean | null;
   createdAt: string;
   updatedAt: string;
-  owner?: string | null;
   tx_paid?: {
     __typename: "ModelTranscationConnection";
     items?: Array<{
@@ -511,7 +506,7 @@ export type CreateTranscationMutation = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -522,7 +517,6 @@ export type CreateTranscationMutation = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -536,7 +530,7 @@ export type CreateTranscationMutation = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -547,7 +541,6 @@ export type CreateTranscationMutation = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -574,7 +567,7 @@ export type UpdateTranscationMutation = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -585,7 +578,6 @@ export type UpdateTranscationMutation = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -599,7 +591,7 @@ export type UpdateTranscationMutation = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -610,7 +602,6 @@ export type UpdateTranscationMutation = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -637,7 +628,7 @@ export type DeleteTranscationMutation = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -648,7 +639,6 @@ export type DeleteTranscationMutation = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -662,7 +652,7 @@ export type DeleteTranscationMutation = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -673,7 +663,6 @@ export type DeleteTranscationMutation = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -717,7 +706,7 @@ export type ListUsersQuery = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -728,7 +717,6 @@ export type ListUsersQuery = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -745,7 +733,7 @@ export type GetUserQuery = {
   __typename: "User";
   id: string;
   username: string;
-  first_name: string;
+  first_name?: string | null;
   last_name?: string | null;
   email: string;
   phone_number?: string | null;
@@ -756,7 +744,6 @@ export type GetUserQuery = {
   isAdmin?: boolean | null;
   createdAt: string;
   updatedAt: string;
-  owner?: string | null;
   tx_paid?: {
     __typename: "ModelTranscationConnection";
     items?: Array<{
@@ -806,7 +793,7 @@ export type GetTranscationQuery = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -817,7 +804,6 @@ export type GetTranscationQuery = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -831,7 +817,7 @@ export type GetTranscationQuery = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -842,7 +828,6 @@ export type GetTranscationQuery = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -871,7 +856,7 @@ export type ListTranscationsQuery = {
       __typename: "User";
       id: string;
       username: string;
-      first_name: string;
+      first_name?: string | null;
       last_name?: string | null;
       email: string;
       phone_number?: string | null;
@@ -882,13 +867,12 @@ export type ListTranscationsQuery = {
       isAdmin?: boolean | null;
       createdAt: string;
       updatedAt: string;
-      owner?: string | null;
     } | null;
     createdBy?: {
       __typename: "User";
       id: string;
       username: string;
-      first_name: string;
+      first_name?: string | null;
       last_name?: string | null;
       email: string;
       phone_number?: string | null;
@@ -899,7 +883,6 @@ export type ListTranscationsQuery = {
       isAdmin?: boolean | null;
       createdAt: string;
       updatedAt: string;
-      owner?: string | null;
     } | null;
   } | null> | null;
   nextToken?: string | null;
@@ -942,7 +925,7 @@ export type OnCreateUserSubscription = {
   __typename: "User";
   id: string;
   username: string;
-  first_name: string;
+  first_name?: string | null;
   last_name?: string | null;
   email: string;
   phone_number?: string | null;
@@ -953,7 +936,6 @@ export type OnCreateUserSubscription = {
   isAdmin?: boolean | null;
   createdAt: string;
   updatedAt: string;
-  owner?: string | null;
   tx_paid?: {
     __typename: "ModelTranscationConnection";
     items?: Array<{
@@ -992,7 +974,7 @@ export type OnUpdateUserSubscription = {
   __typename: "User";
   id: string;
   username: string;
-  first_name: string;
+  first_name?: string | null;
   last_name?: string | null;
   email: string;
   phone_number?: string | null;
@@ -1003,7 +985,6 @@ export type OnUpdateUserSubscription = {
   isAdmin?: boolean | null;
   createdAt: string;
   updatedAt: string;
-  owner?: string | null;
   tx_paid?: {
     __typename: "ModelTranscationConnection";
     items?: Array<{
@@ -1042,7 +1023,7 @@ export type OnDeleteUserSubscription = {
   __typename: "User";
   id: string;
   username: string;
-  first_name: string;
+  first_name?: string | null;
   last_name?: string | null;
   email: string;
   phone_number?: string | null;
@@ -1053,7 +1034,6 @@ export type OnDeleteUserSubscription = {
   isAdmin?: boolean | null;
   createdAt: string;
   updatedAt: string;
-  owner?: string | null;
   tx_paid?: {
     __typename: "ModelTranscationConnection";
     items?: Array<{
@@ -1103,7 +1083,7 @@ export type OnCreateTranscationSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -1114,7 +1094,6 @@ export type OnCreateTranscationSubscription = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -1128,7 +1107,7 @@ export type OnCreateTranscationSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -1139,7 +1118,6 @@ export type OnCreateTranscationSubscription = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -1166,7 +1144,7 @@ export type OnUpdateTranscationSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -1177,7 +1155,6 @@ export type OnUpdateTranscationSubscription = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -1191,7 +1168,7 @@ export type OnUpdateTranscationSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -1202,7 +1179,6 @@ export type OnUpdateTranscationSubscription = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -1229,7 +1205,7 @@ export type OnDeleteTranscationSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -1240,7 +1216,6 @@ export type OnDeleteTranscationSubscription = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -1254,7 +1229,7 @@ export type OnDeleteTranscationSubscription = {
     __typename: "User";
     id: string;
     username: string;
-    first_name: string;
+    first_name?: string | null;
     last_name?: string | null;
     email: string;
     phone_number?: string | null;
@@ -1265,7 +1240,6 @@ export type OnDeleteTranscationSubscription = {
     isAdmin?: boolean | null;
     createdAt: string;
     updatedAt: string;
-    owner?: string | null;
     tx_paid?: {
       __typename: "ModelTranscationConnection";
       nextToken?: string | null;
@@ -1382,7 +1356,6 @@ export class APIService {
           isAdmin
           createdAt
           updatedAt
-          owner
           tx_paid {
             __typename
             items {
@@ -1448,7 +1421,6 @@ export class APIService {
           isAdmin
           createdAt
           updatedAt
-          owner
           tx_paid {
             __typename
             items {
@@ -1514,7 +1486,6 @@ export class APIService {
           isAdmin
           createdAt
           updatedAt
-          owner
           tx_paid {
             __typename
             items {
@@ -1591,7 +1562,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -1616,7 +1586,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -1670,7 +1639,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -1695,7 +1663,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -1749,7 +1716,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -1774,7 +1740,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -1877,7 +1842,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -1922,7 +1886,6 @@ export class APIService {
           isAdmin
           createdAt
           updatedAt
-          owner
           tx_paid {
             __typename
             items {
@@ -1993,7 +1956,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -2018,7 +1980,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -2072,7 +2033,6 @@ export class APIService {
               isAdmin
               createdAt
               updatedAt
-              owner
             }
             createdBy {
               __typename
@@ -2089,7 +2049,6 @@ export class APIService {
               isAdmin
               createdAt
               updatedAt
-              owner
             }
           }
           nextToken
@@ -2168,10 +2127,10 @@ export class APIService {
   ) as Observable<SubscriptionResponse<OnDeleteFestivalEventSubscription>>;
 
   OnCreateUserListener(
-    owner?: string
+    username?: string
   ): Observable<SubscriptionResponse<OnCreateUserSubscription>> {
-    const statement = `subscription OnCreateUser($owner: String) {
-        onCreateUser(owner: $owner) {
+    const statement = `subscription OnCreateUser($username: String) {
+        onCreateUser(username: $username) {
           __typename
           id
           username
@@ -2186,7 +2145,6 @@ export class APIService {
           isAdmin
           createdAt
           updatedAt
-          owner
           tx_paid {
             __typename
             items {
@@ -2222,8 +2180,8 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
+    if (username) {
+      gqlAPIServiceArguments.username = username;
     }
     return API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -2231,10 +2189,10 @@ export class APIService {
   }
 
   OnUpdateUserListener(
-    owner?: string
+    username?: string
   ): Observable<SubscriptionResponse<OnUpdateUserSubscription>> {
-    const statement = `subscription OnUpdateUser($owner: String) {
-        onUpdateUser(owner: $owner) {
+    const statement = `subscription OnUpdateUser($username: String) {
+        onUpdateUser(username: $username) {
           __typename
           id
           username
@@ -2249,7 +2207,6 @@ export class APIService {
           isAdmin
           createdAt
           updatedAt
-          owner
           tx_paid {
             __typename
             items {
@@ -2285,8 +2242,8 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
+    if (username) {
+      gqlAPIServiceArguments.username = username;
     }
     return API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -2294,10 +2251,10 @@ export class APIService {
   }
 
   OnDeleteUserListener(
-    owner?: string
+    username?: string
   ): Observable<SubscriptionResponse<OnDeleteUserSubscription>> {
-    const statement = `subscription OnDeleteUser($owner: String) {
-        onDeleteUser(owner: $owner) {
+    const statement = `subscription OnDeleteUser($username: String) {
+        onDeleteUser(username: $username) {
           __typename
           id
           username
@@ -2312,7 +2269,6 @@ export class APIService {
           isAdmin
           createdAt
           updatedAt
-          owner
           tx_paid {
             __typename
             items {
@@ -2348,8 +2304,8 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
-    if (owner) {
-      gqlAPIServiceArguments.owner = owner;
+    if (username) {
+      gqlAPIServiceArguments.username = username;
     }
     return API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -2387,7 +2343,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -2412,7 +2367,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -2458,7 +2412,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -2483,7 +2436,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -2529,7 +2481,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken
@@ -2554,7 +2505,6 @@ export class APIService {
             isAdmin
             createdAt
             updatedAt
-            owner
             tx_paid {
               __typename
               nextToken

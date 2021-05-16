@@ -32,8 +32,8 @@ subscription OnDeleteFestivalEvent {
     updatedAt
   }
 }
-subscription OnCreateUser($owner: String) {
-  onCreateUser(owner: $owner) {
+subscription OnCreateUser($username: String) {
+  onCreateUser(username: $username) {
     id
     username
     first_name
@@ -47,7 +47,6 @@ subscription OnCreateUser($owner: String) {
     isAdmin
     createdAt
     updatedAt
-    owner
     tx_paid {
       items {
         id
@@ -78,8 +77,8 @@ subscription OnCreateUser($owner: String) {
     }
   }
 }
-subscription OnUpdateUser($owner: String) {
-  onUpdateUser(owner: $owner) {
+subscription OnUpdateUser($username: String) {
+  onUpdateUser(username: $username) {
     id
     username
     first_name
@@ -93,7 +92,6 @@ subscription OnUpdateUser($owner: String) {
     isAdmin
     createdAt
     updatedAt
-    owner
     tx_paid {
       items {
         id
@@ -124,8 +122,8 @@ subscription OnUpdateUser($owner: String) {
     }
   }
 }
-subscription OnDeleteUser($owner: String) {
-  onDeleteUser(owner: $owner) {
+subscription OnDeleteUser($username: String) {
+  onDeleteUser(username: $username) {
     id
     username
     first_name
@@ -139,7 +137,6 @@ subscription OnDeleteUser($owner: String) {
     isAdmin
     createdAt
     updatedAt
-    owner
     tx_paid {
       items {
         id
@@ -195,7 +192,6 @@ subscription OnCreateTranscation {
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -217,7 +213,6 @@ subscription OnCreateTranscation {
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -252,7 +247,6 @@ subscription OnUpdateTranscation {
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -274,7 +268,6 @@ subscription OnUpdateTranscation {
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -309,7 +302,6 @@ subscription OnDeleteTranscation {
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -331,7 +323,6 @@ subscription OnDeleteTranscation {
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }

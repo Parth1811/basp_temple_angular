@@ -24,7 +24,7 @@
       "function": {
         "AdminQueries0e075b85": {
           "deploymentBucketName": "amplify-templemanagement-dev-184253-deployment",
-          "s3Key": "amplify-builds/AdminQueries0e075b85-336b6165524a3550637a-build.zip"
+          "s3Key": "amplify-builds/AdminQueries0e075b85-524f4c30754a55666a6e-build.zip"
         }
       }
     }

@@ -12,7 +12,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 // import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './home/home.component';
 import { SpecialDatesComponent } from './special-dates/special-dates.component';
-import { lbrPipe } from './home/home.pipe';
+import { EscapeHtmlPipe, lbrPipe } from './home/home.pipe';
 import { ProfileComponent } from './profile/profile.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +31,7 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
         FooterComponent,
         HomeComponent,
         lbrPipe,
+        EscapeHtmlPipe,
         SpecialDatesComponent,
         ProfileComponent
     ],

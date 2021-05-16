@@ -48,7 +48,6 @@ query ListUsers(
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -74,7 +73,6 @@ query GetUser($id: ID!) {
     isAdmin
     createdAt
     updatedAt
-    owner
     tx_paid {
       items {
         id
@@ -130,7 +128,6 @@ query GetTranscation($id: ID!) {
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -152,7 +149,6 @@ query GetTranscation($id: ID!) {
       isAdmin
       createdAt
       updatedAt
-      owner
       tx_paid {
         nextToken
       }
@@ -192,7 +188,6 @@ query ListTranscations(
         isAdmin
         createdAt
         updatedAt
-        owner
       }
       createdBy {
         id
@@ -208,7 +203,6 @@ query ListTranscations(
         isAdmin
         createdAt
         updatedAt
-        owner
       }
     }
     nextToken

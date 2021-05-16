@@ -78,6 +78,51 @@ async function confirmUserSignUp(username) {
   }
 }
 
+function makeid(length) {
+  var result = [];
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result.push(characters.charAt(Math.floor(Math.random() *
+      charactersLength)));
+  }
+  return result.join('');
+}
+
+// Confirms as an admin without using a confirmation code.
+async function createUser(email) {
+  const params = {
+    UserPoolId: userPoolId,
+    Username: email,
+    DesiredDeliveryMediums: [
+      "EMAIL",
+    ],
+    UserAttributes: [
+      {
+        Name: 'email', /* required */
+        Value: email
+      },
+      {
+        Name: 'email_verified', /* required */
+        Value: 'true'
+      },
+    ],
+    TemporaryPassword: makeid(8),
+  };
+
+  try {
+    const result = await cognitoIdentityServiceProvider.adminCreateUser(params).promise();
+    console.log(`Confirmed ${email} registration`);
+    return {
+      user: result.User,
+      message: `Confirmed ${email} registration`,
+    };
+  } catch (err) {
+    console.log(err);
+    throw err; response
+  }
+}
+
 async function disableUser(username) {
   const params = {
     UserPoolId: userPoolId,
@@ -252,6 +297,7 @@ module.exports = {
   enableUser,
   getUser,
   listUsers,
+  createUser,
   listGroups,
   listGroupsForUser,
   listUsersInGroup,
