@@ -46,19 +46,4 @@ export class HomeComponent implements OnInit {
     Auth.signOut();
   }
 
-  testFunction(){
-    this.adminapi.createUser("parth4iitb@gmail.com")
-      .then(data => {
-        let newuser: CreateUserInput = {
-          username: data.user.Username,
-          email: "anisharoy203@gmail.com",
-          isAdmin: false
-        }
-        this.api.CreateUser(newuser)
-          .then(() => "New user created")
-          .catch(error => { console.log(error) })
-      })
-      .catch(error =>{console.log(error)})
-  }
-
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, Input,ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Auth } from 'aws-amplify';
 
@@ -9,6 +9,7 @@ import { Auth } from 'aws-amplify';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+    @Input() isLoggedIn: boolean = false;
     private toggleButton: any;
     private sidebarVisible: boolean;
 
@@ -76,6 +77,11 @@ export class NavbarComponent implements OnInit {
 
     signin() {
         Auth.federatedSignIn();
+        // window.location.assign(this.url);
+    }
+
+    signout() {
+        Auth.signOut()
         // window.location.assign(this.url);
     }
 }

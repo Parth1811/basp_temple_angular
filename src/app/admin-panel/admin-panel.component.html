@@ -1,3 +1,45 @@
+<h4>Report a Transaction</h4>
+<form #newTXForm="ngForm" (ngSubmit)="createTranscation(newTXForm)">
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email of the paying user</label>
+        <div class="col-sm-10">
+            <input name="email" #email="ngModel" ngModel type="email" placeholder="Enter Email"
+                    pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" required />
+            <div *ngIf="email.invalid && email.touched" class="alert alert-danger"> Enter a valid email. </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="amount" class="col-sm-2 col-form-label">Amount</label>
+        <div class="col-sm-10">
+            <input name="amount" #amount="ngModel" ngModel type="number" placeholder="Enter amount" class="form-control" required />
+            <div *ngIf="amount.invalid && amount.touched" class="alert alert-danger"> Enter a valid amount. </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="tx_type" class="col-sm-2 col-form-label">Transaction Type</label>
+        <div class="col-sm-10">
+            <input name="tx_type" #tx_type="ngModel" ngModel type="text" placeholder="Enter Type of transaction"
+                class="form-control" required />
+            <div *ngIf="tx_type.invalid && tx_type.touched" class="alert alert-danger"> Enter a valid transaction type. </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="tx_id" class="col-sm-2 col-form-label">Transaction ID</label>
+        <div class="col-sm-10">
+            <input name="tx_id" #tx_id="ngModel" ngModel type="text" placeholder="Enter ID" class="form-control" required />
+            <div *ngIf="tx_id.invalid && tx_id.touched" class="alert alert-danger"> Enter a valid ID. </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm col-lg-2">
+            <button [disabled]="!newTXForm.valid" type="submit" class="btn btn-primary btn-block btn-round">
+                Create
+            </button>
+        </div>
+    </div>
+</form>
+{{ createTXResponse }}
+
 <div class="container fix-width">
     <h4>Create User Account</h4>
     <form #newUserForm="ngForm" (ngSubmit)="createUSer(newUserForm)">
@@ -9,14 +51,10 @@
             </div>
             <div class="col-md-auto">
                 <button [disabled]="!newUserForm.valid" type="submit" class="btn btn-primary btn-block btn-round">
-                    Save
+                    Invite
                 </button>
             </div>
         </div>
     </form>
     {{ createUserResponse }}
-    <br>
-    <button (click)="createTranscation()" class="btn btn-primary btn-round">
-        Test
-    </button>
 </div>

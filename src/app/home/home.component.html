@@ -19,14 +19,10 @@
                 <div class="row">
                     <div class="col-md-8 mr-auto ml-auto">
                         <h2 class="title">Abouts Us</h2>
-                        <h3 *ngIf="state.user">Welcome {{ state.user.attributes.email }} <a (click)="signout()" class="btn btn-danger btn-round">Sign Out</a></h3>
                         <h5 class="description">Bangiya Sanskritik Parishad Kalyan aims to bring all Bengalis of Kalyan
                             and its neighborhood together under one umbrella through various cultural and social
                              activities throughout the year! Welcoming everyone here!</h5>
                         <br>
-                        <a [routerLink]="['profile']" class="btn btn-round">Profile</a>
-                        <a [routerLink]="['signup']" class="btn btn-round">Sign Up</a>
-                        <a (click)="testFunction()" class="btn btn-round">Test</a>
                     </div>
                 </div>
             </div>

@@ -22,8 +22,14 @@
                         <p class="d-lg-none">Instagram</p>
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li [hidden]="isLoggedIn" class="nav-item" *ngIf="!isDocumentation()">
                     <a (click)="signin()" class="nav-link">Sign In</a>
+                </li>
+                <li [hidden]="!isLoggedIn" class="nav-item" *ngIf="!isDocumentation()">
+                    <a [routerLink]="['profile']" class="nav-link">Profile</a>
+                </li>
+                <li [hidden]="!isLoggedIn" class="nav-item" *ngIf="!isDocumentation()">
+                    <a (click)="signout()" class="nav-link">Sign Out</a>
                 </li>
             </ul>
         </div>

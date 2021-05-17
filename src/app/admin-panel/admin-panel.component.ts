@@ -12,29 +12,33 @@ import { CreateUserInput } from 'app/API.service';
 export class AdminPanelComponent implements OnInit {
   @Input() user: UserHandler;
   createUserResponse: any;
+  createTXResponse: any;
 
   constructor(private api: APIService, private adminapi: AdminApiService) { }
 
   ngOnInit(): void {
   }
 
-  testFunc(){
-    console.log(this.user);
-  }
-
-
-  createTranscation(){
-    let tx : CreateTranscationInput = {
-      paidById: "183cd06c-a9e2-48be-bfd1-9076181123be",
-      createdById: this.user.id,
-      amount: 201,
-      tx_type: "Cash",
-      tx_id: "vjdsnj213123"
-    }
-
-    this.api.CreateTranscation(tx)
-      .then(data => console.log(data))
-      .catch(error => console.log(error))
+  createTranscation(form){
+    this.api.ListUsers({
+      email:{
+        eq: form.value.email
+      }
+    }).then(async data => {
+      if(data.items.length === 1){
+        await this.api.CreateTranscation({
+          paidById:data.items[0].id,
+          createdById: this.user.id,
+          amount: form.value.amount,
+          tx_type: form.value.tx_type,
+          tx_id: form.value.tx_id
+        })
+        this.createTXResponse = "Transaction Created Sucessfully"
+      } else{
+        this.createTXResponse = "No Such user Exists"
+      }
+    })
+      .catch(error => this.createTXResponse = "No Such user Exists")
   }
 
   createUSer(form) {
